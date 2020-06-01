@@ -1,0 +1,13 @@
+LICENSE
+
+This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
+
+The terms "reproduce," "reproduction" and "distribution" have the same meaning here as under U.S. copyright law.
+
+"You" means the licensee of the software.
+
+"Use" means use of the software, in read only form, and specifically excludes rights to distribute and to reproduce the software.
+
+If you begin litigation against the Licensor, your license to the software ends automatically.
+
+The software is licensed "as-is." You bear the risk of using it. The Licensor gives no express warranties, guarantees or conditions. To the extent permitted under your local laws, the Licensor excludes the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
