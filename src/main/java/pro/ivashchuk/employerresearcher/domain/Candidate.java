@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Candidate implements Comparable<Candidate> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.PROTECTED)
+    private Long id;
     private String name;
     private String surname;
     private String address;
