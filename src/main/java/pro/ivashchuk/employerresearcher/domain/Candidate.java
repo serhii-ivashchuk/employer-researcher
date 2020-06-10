@@ -3,7 +3,7 @@ package pro.ivashchuk.employerresearcher.domain;
 import javax.persistence.Entity;
 
 @Entity
-public class Candidate {
+public class Candidate implements Comparable<Candidate> {
 
     private String name;
     private String surname;
@@ -29,5 +29,10 @@ public class Candidate {
         this.github = github;
         this.email = email;
         this.phone = phone;
+    }
+
+    @Override
+    public int compareTo(Candidate candidate) {
+        return (this.getName().compareTo(candidate.getName()));
     }
 }
