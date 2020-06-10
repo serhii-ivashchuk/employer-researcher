@@ -17,7 +17,6 @@ public class Candidate implements Comparable<Candidate> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.PROTECTED)
     private Long id;
     private String name;
     private String surname;
