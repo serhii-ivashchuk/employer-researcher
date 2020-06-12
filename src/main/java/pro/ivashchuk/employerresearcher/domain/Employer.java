@@ -20,4 +20,12 @@ public class Employer {
     private String address;
     private String email;
     private String webSite;
+
+    public Employer(String name, String fullName, String address, String email, String webSite) {
+        this.name = name;
+        this.fullName = fullName;
+        this.address = address;
+        this.email = email;
+        this.webSite = webSite;
+    }
 }
