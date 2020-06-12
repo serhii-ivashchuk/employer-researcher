@@ -14,7 +14,9 @@ public interface JpaEmployerRepository extends JpaRepository<Employer, Long> {
 
     Optional<Employer> findById(Long id);
 
-    Employer save(Employer Employer);
+    Employer save(Employer employer);
 
-    void delete(Employer Employer);
+    void delete(Employer employer);
+
+    void deleteById(Long id);
 }
