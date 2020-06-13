@@ -25,6 +25,7 @@ public class Candidate implements Comparable<Candidate> {
     private String github;
     private String email;
     private String phone;
+    private List<Employer> employers = new ArrayList<>();
 
     public Candidate(Long id, String name, String surname, String address,  String github, String email, String phone) {
         this.id = id;
