@@ -26,6 +26,7 @@ public class Candidate implements Comparable<Candidate> {
     private String email;
     private String phone;
     @OneToMany
+    @Setter(AccessLevel.NONE)
     private List<Employer> employers = new ArrayList<>();
 
     public Candidate(Long id, String name, String surname, String address,  String github, String email, String phone) {
