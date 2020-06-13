@@ -24,6 +24,7 @@ public class Employer implements Comparable<Employer> {
     private String address;
     private String email;
     private String website;
+    @ManyToOne
     private Candidate candidate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer", fetch = FetchType.EAGER,
