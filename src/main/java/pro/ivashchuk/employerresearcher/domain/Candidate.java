@@ -53,6 +53,11 @@ public class Candidate implements Comparable<Candidate> {
         return employer;
     }
 
+    public Employer deleteEmployerFromEmployers(Employer employer) {
+        employers.remove(employer);
+        return employer;
+    }
+
     @Override
     public int compareTo(Candidate candidate) {
         return (this.getName().compareTo(candidate.getName()));
