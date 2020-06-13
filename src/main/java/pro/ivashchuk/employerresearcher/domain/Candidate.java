@@ -48,6 +48,11 @@ public class Candidate implements Comparable<Candidate> {
         this.phone = phone;
     }
 
+    public Employer addEmployerToEmployers(Employer employer) {
+        employers.add(employer);
+        return employer;
+    }
+
     @Override
     public int compareTo(Candidate candidate) {
         return (this.getName().compareTo(candidate.getName()));
