@@ -17,4 +17,6 @@ public interface JpaCandidateRepository extends JpaRepository<Candidate, Long> {
     Candidate save(Candidate candidate);
 
     void delete(Candidate candidate);
+
+    void deleteById(Long id);
 }
