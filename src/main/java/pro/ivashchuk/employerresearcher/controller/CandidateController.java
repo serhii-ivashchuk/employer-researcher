@@ -55,4 +55,10 @@ public class CandidateController {
         jpaCandidateRepository.save(updatedCandidate);
         return "redirect:/candidates";
     }
+
+    @DeleteMapping("/candidate/{id}/delete")
+    public String deleteCandidateById(@PathVariable("id") Long id) {
+        jpaCandidateRepository.deleteById(id);
+        return "redirect:/candidates";
+    }
 }
