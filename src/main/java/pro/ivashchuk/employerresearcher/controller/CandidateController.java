@@ -43,4 +43,10 @@ public class CandidateController {
         jpaCandidateRepository.save(candidate);
         return "redirect:/candidates";
     }
+
+    @GetMapping("/candidate/{id}/update")
+    public String getUpdateCandidate(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("candidate", jpaCandidateRepository.findById(id).get());
+        return "update_candidate";
+    }
 }
