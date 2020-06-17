@@ -49,4 +49,10 @@ public class CandidateController {
         model.addAttribute("candidate", jpaCandidateRepository.findById(id).get());
         return "update_candidate";
     }
+
+    @PutMapping("/candidate/{id}/update")
+    public String putUpdatedCandidate(@PathVariable("id") Long id, Candidate updatedCandidate) {
+        jpaCandidateRepository.save(updatedCandidate);
+        return "redirect:/candidates";
+    }
 }
