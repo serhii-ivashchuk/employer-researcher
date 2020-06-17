@@ -1,7 +1,6 @@
 package pro.ivashchuk.employerresearcher.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,6 @@ public class Vacancy implements Comparable<Vacancy> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.PROTECTED)
     private Long id;
     private String position;
     private String link;
