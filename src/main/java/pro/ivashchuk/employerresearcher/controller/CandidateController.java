@@ -31,4 +31,10 @@ public class CandidateController {
         model.addAttribute("candidate", jpaCandidateRepository.findById(id).get());
         return "candidate";
     }
+
+    @GetMapping("/addNewCandidate")
+    public String getAddNewCandidate(Model model) {
+        model.addAttribute("candidate", new Candidate());
+        return "add_candidate";
+    }
 }
