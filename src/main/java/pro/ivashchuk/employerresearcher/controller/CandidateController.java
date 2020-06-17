@@ -37,4 +37,10 @@ public class CandidateController {
         model.addAttribute("candidate", new Candidate());
         return "add_candidate";
     }
+
+    @PostMapping("/addNewCandidate")
+    public String postNewCandidate(Candidate candidate) {
+        jpaCandidateRepository.save(candidate);
+        return "redirect:/candidates";
+    }
 }
