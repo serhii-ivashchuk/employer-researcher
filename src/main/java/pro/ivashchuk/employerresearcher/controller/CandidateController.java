@@ -25,4 +25,10 @@ public class CandidateController {
         model.addAttribute("candidates", candidates);
         return "all_candidates";
     }
+
+    @GetMapping("/candidate/{id}")
+    public String getCandidateById(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("candidate", jpaCandidateRepository.findById(id).get());
+        return "candidate";
+    }
 }
