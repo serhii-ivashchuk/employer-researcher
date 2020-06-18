@@ -21,20 +21,28 @@ class JpaEmployerRepositoryTest {
     JpaEmployerRepository jpaEmployerRepository;
 
     @Test
-    public void shouldFindEmployerById() {
-        // given
-        Employer testEmployer = new Employer(
-                "TheBestEmployer AG",
+    public void shouldFindAllEmployers() {
+        Employer testEmployer1 = getEmployer("TheBestEmployer 1", "Marienplatz, 1, Munich, Germany");
+        Employer testEmployer2 = getEmployer("TheBestEmployer 2", "Marienplatz, 2, Munich, Germany");
+        Employer testEmployer3 = getEmployer("TheBestEmployer 3", "Marienplatz, 3, Munich, Germany");
+        List<Employer> initialEmployers = Arrays.asList(testEmployer1, testEmployer2, testEmployer3);
+        entityManager.persist(testEmployer1);
+        entityManager.persist(testEmployer2);
+        entityManager.persist(testEmployer3);
+        entityManager.flush();
+        int employersQuantity = jpaEmployerRepository.findAll().size();
+        List<Employer> foundEmployers = jpaEmployerRepository.findAll();
+
+        assertEquals(foundEmployers.size(), employersQuantity, "When repository stores 3 employers, then it " +
+                "should return list of 3 Employers");
+    }
+
+    private Employer getEmployer(String name, String address) {
+        return new Employer(
+                name,
                 "TheBestEmployer Aktiengesellschaft",
-                "Marienplatz, 1, Munich, Germany",
+                address,
                 "email@theBestEmployer.com",
                 "theBestEmployer.com");
-        entityManager.persist(testEmployer);
-        Long testEmployerId = (Long) entityManager.getId(testEmployer);
-        entityManager.flush();
-        // when
-        Employer foundEmployer = jpaEmployerRepository.findById(testEmployer.getId()).get();
-        // then
-        assertEquals(foundEmployer.getName(), testEmployer.getName());
     }
 }
