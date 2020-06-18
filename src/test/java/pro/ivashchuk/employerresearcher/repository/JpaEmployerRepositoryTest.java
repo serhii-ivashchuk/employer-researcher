@@ -64,6 +64,18 @@ class JpaEmployerRepositoryTest {
         assertEquals(testEmployer, savedEmployer, "Test employer should be saved");
     }
 
+    @Test
+    public void shouldUpdateEmployer() {
+        Employer employerBeforeUpdate = jpaEmployerRepository.save(getEmployer("oldName", "oldAddress"));
+        Employer employerAfterUpdate = jpaEmployerRepository.save(createUpdatedEmployer(employerBeforeUpdate, "Super " +
+                "Employer"));
+
+        assertEquals("Super Employer", employerAfterUpdate.getName(), "Names should be equal");
+        assertEquals(employerBeforeUpdate.getId(), employerAfterUpdate.getId(), "Id's should be equal");
+        assertEquals(employerBeforeUpdate.getAddress(), employerAfterUpdate.getAddress(), "Addresses should be equal");
+
+    }
+
     private Employer getEmployer(String name, String address) {
         return new Employer(
                 name,
@@ -71,5 +83,10 @@ class JpaEmployerRepositoryTest {
                 address,
                 "email@theBestEmployer.com",
                 "theBestEmployer.com");
+    }
+
+    private Employer createUpdatedEmployer(Employer employer, String newName) {
+        employer.setName(newName);
+        return employer;
     }
 }
