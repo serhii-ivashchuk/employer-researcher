@@ -85,6 +85,18 @@ class JpaEmployerRepositoryTest {
         assertEquals(jpaEmployerRepository.findAll().size(), 0, "The repository should have 0 Employer entity");
     }
 
+    @Test
+    public void shouldDeleteById() {
+        Employer testEmployer = getEmployer("TheBestEmployer AG", "Marienplatz, 1, Munich, Germany");
+        entityManager.persist(testEmployer);
+        entityManager.flush();
+        Long testEmployerId = (Long) entityManager.getId(testEmployer);
+        jpaEmployerRepository.deleteById(testEmployerId);
+
+        assertEquals(jpaEmployerRepository.findAll().size(), 0, "The repository after deletion should have 0 Employer" +
+                " entity");
+    }
+
     private Employer getEmployer(String name, String address) {
         return new Employer(
                 name,
