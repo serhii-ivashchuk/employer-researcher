@@ -37,6 +37,17 @@ class JpaEmployerRepositoryTest {
                 "should return list of 3 Employers");
     }
 
+    @Test
+    public void shouldFindEmployerById() {
+        Employer testEmployer = getEmployer("TheBestEmployer AG", "Marienplatz, 1, Munich, Germany");
+        entityManager.persist(testEmployer);
+        Long testEmployerId = (Long) entityManager.getId(testEmployer);
+        entityManager.flush();
+        Employer foundEmployer = jpaEmployerRepository.findById(testEmployer.getId()).get();
+
+        assertEquals(foundEmployer.getName(), testEmployer.getName());
+    }
+
     private Employer getEmployer(String name, String address) {
         return new Employer(
                 name,
