@@ -73,7 +73,16 @@ class JpaEmployerRepositoryTest {
         assertEquals("Super Employer", employerAfterUpdate.getName(), "Names should be equal");
         assertEquals(employerBeforeUpdate.getId(), employerAfterUpdate.getId(), "Id's should be equal");
         assertEquals(employerBeforeUpdate.getAddress(), employerAfterUpdate.getAddress(), "Addresses should be equal");
+    }
 
+    @Test
+    public void shouldDelete() {
+        Employer testEmployer = getEmployer("TheBestEmployer AG", "Marienplatz, 1, Munich, Germany");
+        entityManager.persist(testEmployer);
+        entityManager.flush();
+        jpaEmployerRepository.delete(testEmployer);
+
+        assertEquals(jpaEmployerRepository.findAll().size(), 0, "The repository should have 0 Employer entity");
     }
 
     private Employer getEmployer(String name, String address) {
