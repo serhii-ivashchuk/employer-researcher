@@ -9,6 +9,10 @@ import pro.ivashchuk.employerresearcher.domain.Employer;
 import java.util.Arrays;
 import java.util.List;
 
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
@@ -46,6 +50,18 @@ class JpaEmployerRepositoryTest {
         Employer foundEmployer = jpaEmployerRepository.findById(testEmployer.getId()).get();
 
         assertEquals(foundEmployer.getName(), testEmployer.getName());
+    }
+
+    @Test
+    public void shouldSave() {
+        Employer testEmployer = getEmployer("TheBestEmployer AG", "Marienplatz, 1, Munich, Germany");
+        assertThat(testEmployer, is(notNullValue()));
+        entityManager.persist(testEmployer);
+        entityManager.flush();
+        Employer savedEmployer = jpaEmployerRepository.save(testEmployer);
+
+        assertThat(savedEmployer, is(notNullValue()));
+        assertEquals(testEmployer, savedEmployer, "Test employer should be saved");
     }
 
     private Employer getEmployer(String name, String address) {
