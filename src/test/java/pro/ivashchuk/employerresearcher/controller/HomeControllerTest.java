@@ -22,6 +22,6 @@ public class HomeControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
-                .andExpect(content().string(CoreMatchers.containsString("Welcome to Employer Searcher App!")));
+                .andExpect(content().string(CoreMatchers.containsString("Welcome to Employer Researcher App!")));
     }
 }
