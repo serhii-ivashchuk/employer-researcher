@@ -17,7 +17,7 @@ import java.util.List;
 public class EmployerController {
 
     @Autowired
-    JpaEmployerRepository jpaEmployerRepository;
+    private JpaEmployerRepository jpaEmployerRepository;
 
     @GetMapping
     public String getAllEmployers(Model model) {
