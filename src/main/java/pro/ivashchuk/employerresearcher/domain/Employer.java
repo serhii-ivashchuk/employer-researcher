@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Employer {
+public class Employer implements Comparable<Employer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,5 +27,10 @@ public class Employer {
         this.address = address;
         this.email = email;
         this.webSite = webSite;
+    }
+
+    @Override
+    public int compareTo(Employer employer) {
+        return (this.getName().compareTo(employer.getName()));
     }
 }
