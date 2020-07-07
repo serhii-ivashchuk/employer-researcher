@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Candidate</h1><br>
+<div th:object="${candidate}">
+    <div class="row">
+        <span class="label">Company name </span>
+        <span class="field"
+              th:text="${candidate.name}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Surname </span>
+        <span class="field"
+              th:text="${candidate.surname}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Address </span>
+        <span class="field"
+              th:text="${candidate.address}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Email </span>
+        <span class="field"
+              th:text="${candidate.email}"></span><br>
+    </div>
+    <form th:action="@{/candidates/candidate/{id}/change(id=${candidate.id})}"
+          th:method="GET">
+        <input class="btn btn-warning"
+               type="submit"
+               value="Change"/>
+    </form>
+    <form th:action="@{/candidates/candidate/{id}/delete(id=${candidate.id})}"
+          th:method="DELETE">
+        <input class="btn btn-danger"
+               type="submit"
+               value="Delete"/>
+    </form>
+</div>
+</body>
+</html>
