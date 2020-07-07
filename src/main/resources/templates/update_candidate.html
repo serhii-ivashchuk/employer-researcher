@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Candidate</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Update Candidate</h1><br>
+<form class=" "
+      method="POST"
+      th:object="${candidate}">
+    <div class="row">
+        <span class="label">Company name </span>
+        <input id="name"
+               name="name"
+               th:attr='value=${candidate.name}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Surname </span>
+        <input id="surname"
+               name="surname"
+               th:attr='value=${candidate.surname}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Address </span>
+        <input id="address"
+               name="address"
+               th:attr='value=${candidate.address}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">E-mail </span>
+        <input id="email"
+               name="email"
+               th:attr='value=${candidate.email}'
+               type="text"/><br></div>
+    <input class="btn btn-warning"
+           type="submit"
+           value="Update candidate"/><br>
+    </div>
+</form>
+<br>
+<form th:action="@{/candidates/candidate/{id}/delete(id=${employer.id})}"
+      th:method="DELETE">
+    <input class="btn btn-danger"
+           type="submit"
+           value="Delete"/>
+</form>
+</body>
+</html>
