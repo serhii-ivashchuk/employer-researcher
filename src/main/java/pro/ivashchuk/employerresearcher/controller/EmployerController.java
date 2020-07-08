@@ -55,4 +55,10 @@ public class EmployerController {
         jpaEmployerRepository.save(updatedEmployer);
         return "redirect:/employers";
     }
+
+    @DeleteMapping("/employer/{id}/delete")
+    public String deleteEmployerById(@PathVariable("id") Long id) {
+        jpaEmployerRepository.deleteById(id);
+        return "redirect:/employers";
+    }
 }
