@@ -46,4 +46,10 @@ public class EmployerController {
         jpaEmployerRepository.save(employer);
         return "redirect:/employers";
     }
+
+    @GetMapping("/employer/{id}/update")
+    public String getUpdateEmployer(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("employer", jpaEmployerRepository.findById(id).get());
+        return "update_employer";
+    }
 }
