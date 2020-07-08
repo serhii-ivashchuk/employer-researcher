@@ -3,10 +3,7 @@ package pro.ivashchuk.employerresearcher.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pro.ivashchuk.employerresearcher.domain.Employer;
 import pro.ivashchuk.employerresearcher.repository.JpaEmployerRepository;
 
@@ -51,5 +48,11 @@ public class EmployerController {
     public String getUpdateEmployer(@PathVariable("id") Long id, Model model) {
         model.addAttribute("employer", jpaEmployerRepository.findById(id).get());
         return "update_employer";
+    }
+
+    @PutMapping("/employer/{id}/update")
+    public String putUpdatedEmployer(@PathVariable("id") Long id, Employer updatedEmployer) {
+        jpaEmployerRepository.save(updatedEmployer);
+        return "redirect:/employers";
     }
 }
