@@ -33,4 +33,10 @@ public class EmployerController {
         model.addAttribute("employer", jpaEmployerRepository.findById(id).get());
         return "employer";
     }
+
+    @GetMapping("/addNewEmployer")
+    public String getAddNewEmployer(Model model) {
+        model.addAttribute("employer", new Employer());
+        return "add_employer";
+    }
 }
