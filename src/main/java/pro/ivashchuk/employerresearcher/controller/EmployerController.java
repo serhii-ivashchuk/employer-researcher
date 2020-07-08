@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pro.ivashchuk.employerresearcher.domain.Employer;
 import pro.ivashchuk.employerresearcher.repository.JpaEmployerRepository;
@@ -38,5 +39,11 @@ public class EmployerController {
     public String getAddNewEmployer(Model model) {
         model.addAttribute("employer", new Employer());
         return "add_employer";
+    }
+
+    @PostMapping("/addNewEmployer")
+    public String postNewEmployer(Employer employer) {
+        jpaEmployerRepository.save(employer);
+        return "redirect:/employers";
     }
 }
