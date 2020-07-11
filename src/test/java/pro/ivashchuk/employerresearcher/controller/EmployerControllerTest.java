@@ -44,4 +44,12 @@ public class EmployerControllerTest {
                 .andExpect(view().name("all_employers"))
                 .andExpect(content().string(containsString("All Employers")));
     }
+
+    @Test
+    public void testEmployerControllerReturnsAddEmployerPageView() throws Exception {
+        mockMvc.perform(get("/employers/addNewEmployer"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("add_employer"))
+                .andExpect(content().string(containsString("Add New Employer")));
+    }
 }
