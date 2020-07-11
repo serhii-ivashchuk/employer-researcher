@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.controller;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -76,5 +77,10 @@ public class EmployerControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/employers"))
                 .andExpect(content().string(containsString("")));
+    }
+
+    @AfterAll
+    public void teardown() {
+        jpaEmployerRepository.delete(employer);
     }
 }
