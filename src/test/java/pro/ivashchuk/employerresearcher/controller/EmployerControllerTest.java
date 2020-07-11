@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.controller;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,4 +21,14 @@ public class EmployerControllerTest {
     private JpaEmployerRepository jpaEmployerRepository;
 
     private Employer employer;
+
+    @BeforeEach
+    public  void setUp() {
+        employer = new Employer(
+                "TheBestEmployer 1",
+                "TheBestEmployer Aktiengesellschaft",
+                "Marienplatz, 1, Munich, Germany",
+                "email@theBestEmployer.com",
+                "theBestEmployer.com");
+    }
 }
