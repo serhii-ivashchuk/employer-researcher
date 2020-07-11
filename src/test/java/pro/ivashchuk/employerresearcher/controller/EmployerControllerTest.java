@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import pro.ivashchuk.employerresearcher.domain.Employer;
 import pro.ivashchuk.employerresearcher.repository.JpaEmployerRepository;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -51,5 +53,16 @@ public class EmployerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("add_employer"))
                 .andExpect(content().string(containsString("Add New Employer")));
+    }
+
+    @Test
+    public void testEmployerControllerReturnsEmployerPageView() throws Exception {
+        jpaEmployerRepository.save(employer);
+        List<Employer> all = jpaEmployerRepository.findAll();
+        Employer employerFromRepository = all.get(0);
+        mockMvc.perform(get("/employers/employer/" + employerFromRepository.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("employer"))
+                .andExpect(content().string(containsString("Employer")));
     }
 }
