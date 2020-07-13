@@ -45,10 +45,16 @@ public class EmployerController {
         return "add_employer";
     }
 
-    @PostMapping("/addNewEmployer")
-    public String postNewEmployer(Employer employer) {
+    @PostMapping("/addNewEmployer/whereCandidateId/{id}")
+    public String postNewEmployerWhereCandidateId(@PathVariable("id") Long id, Employer employer) {
+        Candidate candidate = jpaCandidateRepository.findById(id).get();
         jpaEmployerRepository.save(employer);
-        return "redirect:/employers";
+        candidate.getEmployers().add(employer);
+        jpaCandidateRepository.save(candidate);
+        employer.setCandidate(candidate);
+        jpaEmployerRepository.save(employer);
+        String emplId = employer.getId().toString();
+        return "redirect:/employers/employer/" + emplId;
     }
 
     @GetMapping("/employer/{id}/update")
