@@ -19,14 +19,14 @@ public class Employer implements Comparable<Employer> {
     private String fullName;
     private String address;
     private String email;
-    private String webSite;
+    private String website;
 
-    public Employer(String name, String fullName, String address, String email, String webSite) {
+    public Employer(String name, String fullName, String address, String email, String website) {
         this.name = name;
         this.fullName = fullName;
         this.address = address;
         this.email = email;
-        this.webSite = webSite;
+        this.website = website;
     }
 
     @Override
