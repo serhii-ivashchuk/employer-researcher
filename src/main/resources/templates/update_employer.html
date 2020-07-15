@@ -57,7 +57,7 @@
 <br>
 <form th:action="@{/employers/employer/{id}(id=${employer.id})}"
       th:method="GET"
-      th:text="${employer.companyName}">
+      th:text="${employer.name}">
     <input class="Open_item_button"
            type="submit"
            value="Open Employer"/>
