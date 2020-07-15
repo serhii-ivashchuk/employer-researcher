@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employer</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Update Employer</h1><br>
+<form class=" "
+      method="POST"
+      th:object="${employer}">
+    <input name="_method"
+           type="hidden"
+           value="put">
+    <div class="row">
+        <span class="label">Company name </span>
+        <input id="name"
+               name="name"
+               th:attr='value=${employer.name}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Full Company name </span>
+        <input id="fullName"
+               name="fullName"
+               th:attr='value=${employer.fullName}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Address </span>
+        <input id="address"
+               name="address"
+               th:attr='value=${employer.address}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">E-mail </span>
+        <input id="email"
+               name="email"
+               th:attr='value=${employer.email}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">Website </span>
+        <input id="website"
+               name="website"
+               th:attr='value=${employer.website}'
+               type="text"/><br></div>
+    <input class="Update_button"
+           type="submit"
+           value="Update employer"/><br>
+    </div>
+</form>
+<br>
+<form th:action="@{/employers/employer/{id}(id=${employer.id})}"
+      th:method="GET"
+      th:text="${employer.companyName}">
+    <input class="Open_item_button"
+           type="submit"
+           value="Open Employer"/>
+</form>
+<form th:action="@{/employers/employer/{id}/delete(id=${employer.id})}"
+      th:method="DELETE">
+    <input class="Delete_button"
+           type="submit"
+           value="Delete"/>
+</form>
+</body>
+</html>
