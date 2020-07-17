@@ -11,4 +11,9 @@ public class Vacancy {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String position;
+    private String link;
+    private String notes;
+    private String description;
+    private String comment;
 }
