@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Vacancy {
+public class Vacancy implements Comparable<Vacancy> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,5 +32,10 @@ public class Vacancy {
         this.notes = notes;
         this.description = description;
         this.comment = comment;
+    }
+
+    @Override
+    public int compareTo(Vacancy vacancy) {
+        return (this.getPosition().compareTo(vacancy.getPosition()));
     }
 }
