@@ -25,4 +25,12 @@ public class Vacancy {
     private String notes;
     private String description;
     private String comment;
+
+    public Vacancy(String position, String link, String notes, String description, String comment) {
+        this.position = position;
+        this.link = link;
+        this.notes = notes;
+        this.description = description;
+        this.comment = comment;
+    }
 }
