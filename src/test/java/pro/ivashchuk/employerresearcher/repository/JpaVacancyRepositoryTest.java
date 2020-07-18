@@ -84,6 +84,18 @@ class JpaVacancyRepositoryTest {
         assertEquals(jpaVacancyRepository.findAll().size(), 0, "The repository should have 0 Vacancy entity");
     }
 
+    @Test
+    public void shouldDeleteById() {
+        Vacancy testVacancy = getVacancy("Junior Java Engineer");
+        entityManager.persist(testVacancy);
+        entityManager.flush();
+        Long testVacancyId = (Long) entityManager.getId(testVacancy);
+        jpaVacancyRepository.deleteById(testVacancyId);
+
+        assertEquals(jpaVacancyRepository.findAll().size(), 0, "The repository after deletion should have 0 Vacancy" +
+                " entity");
+    }
+
     private Vacancy getVacancy(String position) {
         return new Vacancy(
                 position,
