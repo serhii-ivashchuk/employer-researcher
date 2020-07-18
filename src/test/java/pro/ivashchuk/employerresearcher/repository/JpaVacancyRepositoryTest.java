@@ -64,6 +64,16 @@ class JpaVacancyRepositoryTest {
         assertEquals(testVacancy, savedVacancy, "Test vacancy should be saved");
     }
 
+    @Test
+    public void shouldUpdateVacancy() {
+        Vacancy vacancyBeforeUpdate = jpaVacancyRepository.save(getVacancy("Junior Java Engineer"));
+        Vacancy vacancyAfterUpdate = jpaVacancyRepository.save(createUpdatedVacancy(vacancyBeforeUpdate, "Java" +
+                " Engineer"));
+
+        assertEquals("Java Engineer", vacancyAfterUpdate.getPosition(), "After update position should be equal");
+        assertEquals(vacancyBeforeUpdate.getId(), vacancyAfterUpdate.getId(), "Id's should be equal");
+    }
+
     private Vacancy getVacancy(String position) {
         return new Vacancy(
                 position,
@@ -72,5 +82,10 @@ class JpaVacancyRepositoryTest {
                 "theBestEmployer is hiring now! For description please visit our website theBestEmployer" +
                         ".com/vacancies.",
                 "Comment: it's very suitable");
+    }
+
+    private Vacancy createUpdatedVacancy(Vacancy vacancy, String newPosition) {
+        vacancy.setPosition(newPosition);
+        return vacancy;
     }
 }
