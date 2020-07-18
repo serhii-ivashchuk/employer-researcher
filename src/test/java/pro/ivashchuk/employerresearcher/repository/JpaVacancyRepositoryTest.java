@@ -37,6 +37,17 @@ class JpaVacancyRepositoryTest {
                 "should return list of 3 Vacancies");
     }
 
+    @Test
+    public void shouldFindEmployerById() {
+        Vacancy testVacancy = getVacancy("Junior Java Engineer");
+        entityManager.persist(testVacancy);
+        Long testVacancyId = (Long) entityManager.getId(testVacancy);
+        entityManager.flush();
+        Vacancy foundVacancy = jpaVacancyRepository.findById(testVacancy.getId()).get();
+
+        assertEquals(foundVacancy.getPosition(), testVacancy.getPosition());
+    }
+
     private Vacancy getVacancy(String position) {
         return new Vacancy(
                 position,
