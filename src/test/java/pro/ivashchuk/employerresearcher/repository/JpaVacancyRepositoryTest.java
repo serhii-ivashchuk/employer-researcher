@@ -9,6 +9,9 @@ import pro.ivashchuk.employerresearcher.domain.Vacancy;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
@@ -46,6 +49,18 @@ class JpaVacancyRepositoryTest {
         Vacancy foundVacancy = jpaVacancyRepository.findById(testVacancy.getId()).get();
 
         assertEquals(foundVacancy.getPosition(), testVacancy.getPosition());
+    }
+
+    @Test
+    public void shouldSave() {
+        Vacancy testVacancy = getVacancy("Junior Java Engineer");
+        assertThat(testVacancy, is(notNullValue()));
+        entityManager.persist(testVacancy);
+        entityManager.flush();
+        Vacancy savedVacancy = jpaVacancyRepository.save(testVacancy);
+
+        assertThat(savedVacancy, is(notNullValue()));
+        assertEquals(testVacancy, savedVacancy, "Test vacancy should be saved");
     }
 
     private Vacancy getVacancy(String position) {
