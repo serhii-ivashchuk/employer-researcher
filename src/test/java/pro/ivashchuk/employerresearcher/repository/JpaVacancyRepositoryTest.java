@@ -41,14 +41,15 @@ class JpaVacancyRepositoryTest {
     }
 
     @Test
-    public void shouldFindEmployerById() {
+    public void shouldFindVacancyById() {
         Vacancy testVacancy = getVacancy("Junior Java Engineer");
         entityManager.persist(testVacancy);
         Long testVacancyId = (Long) entityManager.getId(testVacancy);
         entityManager.flush();
         Vacancy foundVacancy = jpaVacancyRepository.findById(testVacancy.getId()).get();
 
-        assertEquals(foundVacancy.getPosition(), testVacancy.getPosition());
+        assertEquals(foundVacancy.getPosition(), testVacancy.getPosition(), "Vacancy before persistence should be " +
+                "equal to vacancy from repository after persistence.");
     }
 
     @Test
