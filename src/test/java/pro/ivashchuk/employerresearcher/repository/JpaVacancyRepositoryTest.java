@@ -69,7 +69,8 @@ class JpaVacancyRepositoryTest {
                 position,
                 "theBestEmployer.com/vacancies/1",
                 "Notes: this position is relevant to my search",
-                "email@theBestEmployer.com",
+                "theBestEmployer is hiring now! For description please visit our website theBestEmployer" +
+                        ".com/vacancies.",
                 "Comment: it's very suitable");
     }
 }
