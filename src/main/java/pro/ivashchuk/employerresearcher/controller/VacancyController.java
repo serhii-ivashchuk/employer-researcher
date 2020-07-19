@@ -33,4 +33,10 @@ public class VacancyController {
         model.addAttribute("vacancy", jpaVacancyRepository.findById(id).get());
         return "vacancy";
     }
+
+    @GetMapping("/addNewVacancy")
+    public String getAddNewVacancy(Model model) {
+        model.addAttribute("vacancy", new Vacancy());
+        return "add_vacancy";
+    }
 }
