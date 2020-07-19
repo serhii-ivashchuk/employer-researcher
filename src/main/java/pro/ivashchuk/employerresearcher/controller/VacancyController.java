@@ -46,4 +46,10 @@ public class VacancyController {
         jpaVacancyRepository.save(vacancy);
         return "redirect:/vacancies";
     }
+
+    @GetMapping("/vacancy/{id}/update")
+    public String getUpdateVacancy(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("vacancy", jpaVacancyRepository.findById(id).get());
+        return "update_vacancy";
+    }
 }
