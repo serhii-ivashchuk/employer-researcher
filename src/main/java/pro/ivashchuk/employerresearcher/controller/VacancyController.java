@@ -55,4 +55,10 @@ public class VacancyController {
         jpaVacancyRepository.save(updatedVacancy);
         return "redirect:/vacancies";
     }
+
+    @DeleteMapping("/vacancy/{id}/delete")
+    public String deleteVacancyById(@PathVariable("id") Long id) {
+        jpaVacancyRepository.deleteById(id);
+        return "redirect:/vacancies";
+    }
 }
