@@ -11,5 +11,13 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
+    private String date;
+    private String summary;
+    private String skills;
+    private String projects;
+    private String experience;
+    private String education;
+    private String additionalInformation;
 
 }
