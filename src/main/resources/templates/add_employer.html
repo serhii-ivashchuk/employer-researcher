@@ -14,7 +14,6 @@
 <form class=" "
       method="POST"
       th:object="${employer}">
-
     <div class="row">
         <span class="label">Company name: </span>
         <input id="name"
@@ -47,7 +46,7 @@
                name="website"
                th:attr='value=${employer.website}'
                type="text"/><br></div>
-    <input class="Update_button"
+    <input class="Add_button"
            type="submit"
            value="Add employer"/><br>
     </div>
