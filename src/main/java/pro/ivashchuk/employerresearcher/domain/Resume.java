@@ -29,4 +29,14 @@ public class Resume {
     private String education;
     private String additionalInformation;
 
+    public Resume(String name, String date, String summary, String skills, String projects, String experience, String education, String additionalInformation) {
+        this.name = name;
+        this.date = date;
+        this.summary = summary;
+        this.skills = skills;
+        this.projects = projects;
+        this.experience = experience;
+        this.education = education;
+        this.additionalInformation = additionalInformation;
+    }
 }
