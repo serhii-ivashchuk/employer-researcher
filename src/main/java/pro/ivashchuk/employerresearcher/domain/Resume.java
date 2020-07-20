@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Resume {
+public class Resume implements Comparable<Resume> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,5 +38,10 @@ public class Resume {
         this.experience = experience;
         this.education = education;
         this.additionalInformation = additionalInformation;
+    }
+
+    @Override
+    public int compareTo(Resume resume) {
+        return (this.getName().compareTo(resume.getName()));
     }
 }
