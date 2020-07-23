@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.controller;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -46,5 +47,10 @@ class VacancyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("all_vacancies"))
                 .andExpect(content().string(containsString("All Vacancies")));
+    }
+
+    @AfterAll
+    public void tearDown() {
+        jpaVacancyRepository.delete(vacancy);
     }
 }
