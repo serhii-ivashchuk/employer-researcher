@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import pro.ivashchuk.employerresearcher.domain.Vacancy;
 import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -55,6 +57,17 @@ class VacancyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("add_vacancy"))
                 .andExpect(content().string(containsString("Add New Vacancy")));
+    }
+
+    @Test
+    public void testVacancyControllerReturnsVacancyPageView() throws Exception {
+        jpaVacancyRepository.save(vacancy);
+        List<Vacancy> all = jpaVacancyRepository.findAll();
+        Vacancy vacancyFromRepository = all.get(0);
+        mockMvc.perform(get("/vacancies/vacancy/" + vacancyFromRepository.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("vacancy"))
+                .andExpect(content().string(containsString("Vacancy")));
     }
 
     @AfterAll
