@@ -49,6 +49,14 @@ class VacancyControllerTest {
                 .andExpect(content().string(containsString("All Vacancies")));
     }
 
+    @Test
+    public void testVacancyControllerReturnsAddVacancyPageView() throws Exception {
+        mockMvc.perform(get("/vacancies/addNewVacancy"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("add_vacancy"))
+                .andExpect(content().string(containsString("Add New Vacancy")));
+    }
+
     @AfterAll
     public void tearDown() {
         jpaVacancyRepository.delete(vacancy);
