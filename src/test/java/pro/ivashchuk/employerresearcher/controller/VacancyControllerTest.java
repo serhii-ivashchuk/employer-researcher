@@ -14,6 +14,7 @@ import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -68,6 +69,17 @@ class VacancyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("vacancy"))
                 .andExpect(content().string(containsString("Vacancy")));
+    }
+
+    @Test
+    public void testVacancyControllerShouldRedirectAfterVacancyDeletion() throws Exception {
+        jpaVacancyRepository.save(vacancy);
+        List<Vacancy> all = jpaVacancyRepository.findAll();
+        Vacancy vacancyFromRepository = all.get(0);
+        mockMvc.perform(delete("/vacancies/vacancy/" + vacancyFromRepository.getId() + "/delete"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/vacancies"))
+                .andExpect(content().string(containsString("")));
     }
 
     @AfterAll
