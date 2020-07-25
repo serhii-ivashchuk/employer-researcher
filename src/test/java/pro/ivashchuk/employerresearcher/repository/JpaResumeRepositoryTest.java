@@ -70,6 +70,16 @@ class JpaResumeRepositoryTest {
         assertEquals(resumeBeforeUpdate.getId(), resumeAfterUpdate.getId(), "Id's should be equal");
         assertEquals(resumeBeforeUpdate.getSummary(), resumeAfterUpdate.getSummary(), "Summaries should be equal");
     }
+    
+    @Test
+    public void shouldDelete() {
+        Resume testResume = getResume("John Doe, Junior Java Developer", "25, July 2020");
+        entityManager.persist(testResume);
+        entityManager.flush();
+        jpaResumeRepository.delete(testResume);
+
+        assertEquals(jpaResumeRepository.findAll().size(), 0, "The repository should have 0 Resume entity");
+    }
 
     private Resume getResume(String name, String date) {
         return new Resume(
