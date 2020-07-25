@@ -34,6 +34,17 @@ class JpaResumeRepositoryTest {
         assertEquals(foundResumes.size(), employersQuantity, "When repository stores 3 Resumes, then it " +
                 "should return list of 3 Resumes");
     }
+    
+    @Test
+    public void shouldFindResumeById() {
+        Resume testResume = getResume("John Doe, Junior Java Developer", "25, July 2020");
+        entityManager.persist(testResume);
+        Long testResumeId = (Long) entityManager.getId(testResume);
+        entityManager.flush();
+        Resume foundResume = jpaResumeRepository.findById(testResumeId).get();
+
+        assertEquals(foundResume.getName(), testResume.getName());
+    }
 
     private Resume getResume(String name, String date) {
         return new Resume(
