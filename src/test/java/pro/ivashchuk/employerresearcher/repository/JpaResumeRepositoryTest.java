@@ -8,6 +8,9 @@ import pro.ivashchuk.employerresearcher.domain.Resume;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
@@ -44,6 +47,18 @@ class JpaResumeRepositoryTest {
         Resume foundResume = jpaResumeRepository.findById(testResumeId).get();
 
         assertEquals(foundResume.getName(), testResume.getName());
+    }
+
+    @Test
+    public void shouldSave() {
+        Resume testResume = getResume("John Doe, Junior Java Developer", "25, July 2020");
+        assertThat(testResume, is(notNullValue()));
+        entityManager.persist(testResume);
+        entityManager.flush();
+        Resume savedResume = jpaResumeRepository.save(testResume);
+
+        assertThat(savedResume, is(notNullValue()));
+        assertEquals(testResume, savedResume, "Test resume should be saved");
     }
 
     private Resume getResume(String name, String date) {
