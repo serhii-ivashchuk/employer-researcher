@@ -60,6 +60,16 @@ class JpaResumeRepositoryTest {
         assertThat(savedResume, is(notNullValue()));
         assertEquals(testResume, savedResume, "Test resume should be saved");
     }
+    
+    @Test
+    public void shouldUpdateResume() {
+        Resume resumeBeforeUpdate = jpaResumeRepository.save(getResume("oldName", "oldDate"));
+        Resume resumeAfterUpdate = jpaResumeRepository.save(createUpdatedResume(resumeBeforeUpdate, "newName"));
+
+        assertEquals("newName", resumeAfterUpdate.getName(), "Names should be equal");
+        assertEquals(resumeBeforeUpdate.getId(), resumeAfterUpdate.getId(), "Id's should be equal");
+        assertEquals(resumeBeforeUpdate.getSummary(), resumeAfterUpdate.getSummary(), "Summaries should be equal");
+    }
 
     private Resume getResume(String name, String date) {
         return new Resume(
@@ -71,5 +81,10 @@ class JpaResumeRepositoryTest {
                 "Exprerience",
                 "Education",
                 "Additional Information");
+    }
+
+    private Resume createUpdatedResume(Resume resume, String newName) {
+        resume.setName(newName);
+        return resume;
     }
 }
