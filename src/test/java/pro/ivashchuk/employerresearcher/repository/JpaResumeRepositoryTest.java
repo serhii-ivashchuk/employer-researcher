@@ -1,7 +1,8 @@
 package pro.ivashchuk.employerresearcher.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+@DataJpaTest
 class JpaResumeRepositoryTest {
 
 }
