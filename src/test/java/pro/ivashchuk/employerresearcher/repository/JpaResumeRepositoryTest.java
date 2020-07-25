@@ -81,6 +81,18 @@ class JpaResumeRepositoryTest {
         assertEquals(jpaResumeRepository.findAll().size(), 0, "The repository should have 0 Resume entity");
     }
 
+    @Test
+    public void shouldDeleteById() {
+        Resume testResume = getResume("John Doe, Junior Java Developer", "25, July 2020");
+        entityManager.persist(testResume);
+        entityManager.flush();
+        Long testResumeId = (Long) entityManager.getId(testResume);
+        jpaResumeRepository.deleteById(testResumeId);
+
+        assertEquals(jpaResumeRepository.findAll().size(), 0, "The repository after deletion should have 0 Resume" +
+                " entity");
+    }
+    
     private Resume getResume(String name, String date) {
         return new Resume(
                 name,
