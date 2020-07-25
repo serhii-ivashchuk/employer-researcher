@@ -100,7 +100,7 @@ class JpaResumeRepositoryTest {
                 "Summary",
                 "Skills",
                 "Projects",
-                "Exprerience",
+                "Experience",
                 "Education",
                 "Additional Information");
     }
