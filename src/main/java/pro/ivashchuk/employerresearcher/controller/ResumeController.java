@@ -46,4 +46,10 @@ public class ResumeController {
         jpaResumeRepository.save(resume);
         return "redirect:/resumes";
     }
+
+    @GetMapping("/resume/{id}/update")
+    public String getUpdateResume(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("resume", jpaResumeRepository.findById(id).get());
+        return "update_resume";
+    }
 }
