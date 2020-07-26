@@ -55,4 +55,10 @@ public class ResumeController {
         jpaResumeRepository.save(updatedResume);
         return "redirect:/resumes";
     }
+
+    @DeleteMapping("/resume/{id}/delete")
+    public String deleteResumeById(@PathVariable("id") Long id) {
+        jpaResumeRepository.deleteById(id);
+        return "redirect:/resumes";
+    }
 }
