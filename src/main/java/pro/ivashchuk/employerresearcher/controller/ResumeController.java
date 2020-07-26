@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pro.ivashchuk.employerresearcher.domain.Resume;
 import pro.ivashchuk.employerresearcher.repository.JpaResumeRepository;
@@ -38,5 +39,11 @@ public class ResumeController {
     public String getAddNewResume(Model model) {
         model.addAttribute("resume", new Resume());
         return "add_resume";
+    }
+
+    @PostMapping("/addNewResume")
+    public String postNewResume(Resume resume) {
+        jpaResumeRepository.save(resume);
+        return "redirect:/resumes";
     }
 }
