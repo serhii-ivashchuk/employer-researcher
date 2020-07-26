@@ -33,4 +33,10 @@ public class ResumeController {
         model.addAttribute("resume", jpaResumeRepository.findById(id).get());
         return "resume";
     }
+
+    @GetMapping("/addNewResume")
+    public String getAddNewResume(Model model) {
+        model.addAttribute("resume", new Resume());
+        return "add_resume";
+    }
 }
