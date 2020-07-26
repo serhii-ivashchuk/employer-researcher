@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pro.ivashchuk.employerresearcher.domain.Resume;
 import pro.ivashchuk.employerresearcher.repository.JpaResumeRepository;
@@ -25,5 +26,11 @@ public class ResumeController {
         Collections.sort(resumes);
         model.addAttribute("resumes", resumes);
         return "all_resumes";
+    }
+
+    @GetMapping("/resume/{id}")
+    public String getResumeById(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("resume", jpaResumeRepository.findById(id).get());
+        return "resume";
     }
 }
