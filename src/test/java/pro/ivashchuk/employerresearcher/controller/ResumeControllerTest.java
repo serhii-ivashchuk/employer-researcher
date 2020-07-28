@@ -14,6 +14,7 @@ import pro.ivashchuk.employerresearcher.repository.JpaResumeRepository;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -61,6 +62,17 @@ class ResumeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("resume"))
                 .andExpect(content().string(containsString("Resume")));
+    }
+
+    @Test
+    public void testResumeControllerShouldRedirectAfterResumeDeletion() throws Exception {
+        jpaResumeRepository.save(resume);
+        List<Resume> all = jpaResumeRepository.findAll();
+        Resume resumeFromRepository = all.get(0);
+        mockMvc.perform(delete("/resumes/resume/" + resumeFromRepository.getId() + "/delete"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/resumes"))
+                .andExpect(content().string(containsString("")));
     }
 
     @AfterAll
