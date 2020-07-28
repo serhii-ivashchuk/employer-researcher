@@ -20,5 +20,10 @@ public class CoverLetter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.PROTECTED)
     private Long id;
-
+    private String name;
+    private String date;
+    private String salutation;
+    private String[] paragraphs;
+    private String closing;
+    private String signature;
 }
