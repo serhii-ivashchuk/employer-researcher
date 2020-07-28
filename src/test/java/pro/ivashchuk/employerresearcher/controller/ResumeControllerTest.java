@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import pro.ivashchuk.employerresearcher.domain.Resume;
 import pro.ivashchuk.employerresearcher.repository.JpaResumeRepository;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -48,6 +50,17 @@ class ResumeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("add_resume"))
                 .andExpect(content().string(containsString("Add New Resume")));
+    }
+
+    @Test
+    public void testResumeControllerReturnsResumePageView() throws Exception {
+        jpaResumeRepository.save(resume);
+        List<Resume> all = jpaResumeRepository.findAll();
+        Resume resumeFromRepository = all.get(0);
+        mockMvc.perform(get("/resumes/resume/" + resumeFromRepository.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("resume"))
+                .andExpect(content().string(containsString("Resume")));
     }
 
     @AfterAll
