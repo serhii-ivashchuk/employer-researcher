@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CoverLetter {
+public class CoverLetter implements Comparable<CoverLetter> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,5 +34,10 @@ public class CoverLetter {
         this.paragraphs = paragraphs;
         this.closing = closing;
         this.signature = signature;
+    }
+
+    @Override
+    public int compareTo(CoverLetter coverLetter) {
+        return (this.getName().compareTo(coverLetter.getName()));
     }
 }
