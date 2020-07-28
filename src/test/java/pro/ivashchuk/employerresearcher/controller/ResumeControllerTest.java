@@ -42,6 +42,14 @@ class ResumeControllerTest {
                 .andExpect(content().string(containsString("All Resumes")));
     }
 
+    @Test
+    public void testResumeControllerReturnsAddResumePageView() throws Exception {
+        mockMvc.perform(get("/resumes/addNewResume"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("add_resume"))
+                .andExpect(content().string(containsString("Add New Resume")));
+    }
+
     @AfterAll
     public void tearDown() {
         jpaResumeRepository.delete(resume);
