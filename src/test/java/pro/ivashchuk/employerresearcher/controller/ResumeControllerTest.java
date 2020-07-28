@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.controller;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ class ResumeControllerTest {
     public  void setUp() {
         resume = new Resume(
         );
+    }
+
+    @AfterAll
+    public void tearDown() {
+        jpaResumeRepository.delete(resume);
     }
 }
