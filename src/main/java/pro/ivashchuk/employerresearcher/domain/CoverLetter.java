@@ -26,4 +26,13 @@ public class CoverLetter {
     private String[] paragraphs;
     private String closing;
     private String signature;
+
+    public CoverLetter(String name, String date, String salutation, String[] paragraphs, String closing, String signature) {
+        this.name = name;
+        this.date = date;
+        this.salutation = salutation;
+        this.paragraphs = paragraphs;
+        this.closing = closing;
+        this.signature = signature;
+    }
 }
