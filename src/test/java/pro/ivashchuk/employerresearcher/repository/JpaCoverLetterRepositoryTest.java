@@ -35,8 +35,19 @@ class JpaCoverLetterRepositoryTest {
                 "should return list of 3 CoverLetters");
     }
 
+    @Test
+    public void shouldFindCoverLetterById() {
+        CoverLetter testCoverLetter = getCoverLetter("John Doe, Junior Java Engineer", "30, July 2020");
+        entityManager.persist(testCoverLetter);
+        Long testCoverLetterId = (Long) entityManager.getId(testCoverLetter);
+        entityManager.flush();
+        CoverLetter foundCoverLetter = jpaCoverLetterRepository.findById(testCoverLetterId).get();
+
+        assertEquals(foundCoverLetter.getName(), testCoverLetter.getName());
+    }
+
     private CoverLetter getCoverLetter(String name, String date) {
-        return new CoverLetter(name,date,"Salutation", new String[]{ "First", "Second", "Third"}, "Closing",
+        return new CoverLetter(name, date, "Salutation", new String[]{"First", "Second", "Third"}, "Closing",
                 "Signature");
     }
 }
