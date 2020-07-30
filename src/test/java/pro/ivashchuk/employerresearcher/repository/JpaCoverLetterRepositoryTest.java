@@ -61,8 +61,26 @@ class JpaCoverLetterRepositoryTest {
         assertEquals(testCoverLetter, savedCoverLetter, "Test coverLetter should be saved");
     }
 
+    @Test
+    public void shouldUpdateCoverLetter() {
+        CoverLetter coverLetterBeforeUpdate = jpaCoverLetterRepository.save(getCoverLetter("oldName", "oldDate"));
+        CoverLetter coverLetterAfterUpdate =
+                jpaCoverLetterRepository.save(createUpdatedCoverLetter(coverLetterBeforeUpdate, "newName"));
+
+        assertEquals("newName", coverLetterAfterUpdate.getName(), "Names should be equal");
+        assertEquals(coverLetterBeforeUpdate.getId(), coverLetterAfterUpdate.getId(), "Id's should be equal");
+        assertEquals(coverLetterBeforeUpdate.getParagraphs(), coverLetterAfterUpdate.getParagraphs(), "Paragraphs " +
+                "should be " +
+                "equal");
+    }
+
     private CoverLetter getCoverLetter(String name, String date) {
         return new CoverLetter(name, date, "Salutation", new String[]{"First", "Second", "Third"}, "Closing",
                 "Signature");
+    }
+
+    private CoverLetter createUpdatedCoverLetter(CoverLetter coverLetter, String newName) {
+        coverLetter.setName(newName);
+        return coverLetter;
     }
 }
