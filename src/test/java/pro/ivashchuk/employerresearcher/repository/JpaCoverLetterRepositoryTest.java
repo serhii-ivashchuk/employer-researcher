@@ -84,6 +84,18 @@ class JpaCoverLetterRepositoryTest {
         assertEquals(jpaCoverLetterRepository.findAll().size(), 0, "The repository should have 0 CoverLetter entity");
     }
 
+    @Test
+    public void shouldDeleteById() {
+        CoverLetter testCoverLetter = getCoverLetter("John Doe, Junior Java Engineer", "30, July 2020");
+        entityManager.persist(testCoverLetter);
+        entityManager.flush();
+        Long testCoverLetterId = (Long) entityManager.getId(testCoverLetter);
+        jpaCoverLetterRepository.deleteById(testCoverLetterId);
+
+        assertEquals(jpaCoverLetterRepository.findAll().size(), 0, "The repository after deletion should have 0 CoverLetter" +
+                " entity");
+    }
+
     private CoverLetter getCoverLetter(String name, String date) {
         return new CoverLetter(name, date, "Salutation", new String[]{"First", "Second", "Third"}, "Closing",
                 "Signature");
