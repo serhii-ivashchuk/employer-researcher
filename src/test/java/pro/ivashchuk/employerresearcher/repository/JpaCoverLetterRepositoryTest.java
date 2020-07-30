@@ -8,6 +8,9 @@ import pro.ivashchuk.employerresearcher.domain.CoverLetter;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
@@ -44,6 +47,18 @@ class JpaCoverLetterRepositoryTest {
         CoverLetter foundCoverLetter = jpaCoverLetterRepository.findById(testCoverLetterId).get();
 
         assertEquals(foundCoverLetter.getName(), testCoverLetter.getName());
+    }
+
+    @Test
+    public void shouldSave() {
+        CoverLetter testCoverLetter = getCoverLetter("John Doe, Junior Java Engineer", "30, July 2020");
+        assertThat(testCoverLetter, is(notNullValue()));
+        entityManager.persist(testCoverLetter);
+        entityManager.flush();
+        CoverLetter savedCoverLetter = jpaCoverLetterRepository.save(testCoverLetter);
+
+        assertThat(savedCoverLetter, is(notNullValue()));
+        assertEquals(testCoverLetter, savedCoverLetter, "Test coverLetter should be saved");
     }
 
     private CoverLetter getCoverLetter(String name, String date) {
