@@ -74,6 +74,16 @@ class JpaCoverLetterRepositoryTest {
                 "equal");
     }
 
+    @Test
+    public void shouldDelete() {
+        CoverLetter testCoverLetter = getCoverLetter("John Doe, Junior Java Engineer", "30, July 2020");
+        entityManager.persist(testCoverLetter);
+        entityManager.flush();
+        jpaCoverLetterRepository.delete(testCoverLetter);
+
+        assertEquals(jpaCoverLetterRepository.findAll().size(), 0, "The repository should have 0 CoverLetter entity");
+    }
+
     private CoverLetter getCoverLetter(String name, String date) {
         return new CoverLetter(name, date, "Salutation", new String[]{"First", "Second", "Third"}, "Closing",
                 "Signature");
