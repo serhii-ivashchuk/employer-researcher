@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pro.ivashchuk.employerresearcher.domain.CoverLetter;
 import pro.ivashchuk.employerresearcher.repository.JpaCoverLetterRepository;
@@ -38,5 +39,11 @@ public class CoverLetterController {
     public String getAddNewCoverLetter(Model model) {
         model.addAttribute("coverLetter", new CoverLetter());
         return "add_cover_letter";
+    }
+
+    @PostMapping("/addNewCoverLetter")
+    public String postNewCoverLetter(CoverLetter coverLetter) {
+        jpaCoverLetterRepository.save(coverLetter);
+        return "redirect:/coverLetters";
     }
 }
