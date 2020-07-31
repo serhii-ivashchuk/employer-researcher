@@ -46,4 +46,10 @@ public class CoverLetterController {
         jpaCoverLetterRepository.save(coverLetter);
         return "redirect:/coverLetters";
     }
+
+    @GetMapping("/coverLetter/{id}/update")
+    public String getUpdateCoverLetter(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("coverLetter", jpaCoverLetterRepository.findById(id).get());
+        return "update_cover_letter";
+    }
 }
