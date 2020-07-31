@@ -3,10 +3,7 @@ package pro.ivashchuk.employerresearcher.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pro.ivashchuk.employerresearcher.domain.CoverLetter;
 import pro.ivashchuk.employerresearcher.repository.JpaCoverLetterRepository;
 
@@ -51,5 +48,11 @@ public class CoverLetterController {
     public String getUpdateCoverLetter(@PathVariable("id") Long id, Model model) {
         model.addAttribute("coverLetter", jpaCoverLetterRepository.findById(id).get());
         return "update_cover_letter";
+    }
+
+    @PutMapping("/coverLetter/{id}/update")
+    public String putUpdatedCoverLetter(@PathVariable("id") Long id, CoverLetter updatedCoverLetter) {
+        jpaCoverLetterRepository.save(updatedCoverLetter);
+        return "redirect:/coverLetters";
     }
 }
