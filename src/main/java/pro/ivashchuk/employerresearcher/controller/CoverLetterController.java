@@ -33,4 +33,10 @@ public class CoverLetterController {
         model.addAttribute("coverLetter", jpaCoverLetterRepository.findById(id).get());
         return "coverLetter";
     }
+
+    @GetMapping("/addNewCoverLetter")
+    public String getAddNewCoverLetter(Model model) {
+        model.addAttribute("coverLetter", new CoverLetter());
+        return "add_cover_letter";
+    }
 }
