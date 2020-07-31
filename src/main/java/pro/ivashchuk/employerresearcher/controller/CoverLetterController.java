@@ -55,4 +55,10 @@ public class CoverLetterController {
         jpaCoverLetterRepository.save(updatedCoverLetter);
         return "redirect:/coverLetters";
     }
+
+    @DeleteMapping("/coverLetter/{id}/delete")
+    public String deleteCoverLetterById(@PathVariable("id") Long id) {
+        jpaCoverLetterRepository.deleteById(id);
+        return "redirect:/coverLetters";
+    }
 }
