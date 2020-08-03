@@ -42,6 +42,14 @@ class CoverLetterControllerTest {
                 .andExpect(content().string(containsString("All Cover Letters")));
     }
 
+    @Test
+    public void testCoverLetterControllerReturnsAddCoverLetterPageView() throws Exception {
+        mockMvc.perform(get("/coverLetters/addNewCoverLetter"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("add_cover_letter"))
+                .andExpect(content().string(containsString("Add New Cover Letter")));
+    }
+
     @AfterAll
     public void tearDown() {
         jpaCoverLetterRepository.delete(coverLetter);
