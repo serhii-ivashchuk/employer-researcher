@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.controller;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ class CoverLetterControllerTest {
     public  void setUp() {
         coverLetter = new CoverLetter(
         );
+    }
+
+    @AfterAll
+    public void tearDown() {
+        jpaCoverLetterRepository.delete(coverLetter);
     }
 }
