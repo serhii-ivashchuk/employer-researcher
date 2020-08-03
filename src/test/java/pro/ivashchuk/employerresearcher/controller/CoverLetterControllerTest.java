@@ -14,6 +14,7 @@ import pro.ivashchuk.employerresearcher.repository.JpaCoverLetterRepository;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -61,6 +62,17 @@ class CoverLetterControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("cover_letter"))
                 .andExpect(content().string(containsString("Cover Letter")));
+    }
+
+    @Test
+    public void testCoverLetterControllerShouldRedirectAfterCoverLetterDeletion() throws Exception {
+        jpaCoverLetterRepository.save(coverLetter);
+        List<CoverLetter> all = jpaCoverLetterRepository.findAll();
+        CoverLetter coverLetterFromRepository = all.get(0);
+        mockMvc.perform(delete("/coverLetters/coverLetter/" + coverLetterFromRepository.getId() + "/delete"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/coverLetters"))
+                .andExpect(content().string(containsString(" Cover Letters")));
     }
 
     @AfterAll
