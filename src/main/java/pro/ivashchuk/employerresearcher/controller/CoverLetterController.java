@@ -29,7 +29,7 @@ public class CoverLetterController {
     @GetMapping("/coverLetter/{id}")
     public String getCoverLetterById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("coverLetter", jpaCoverLetterRepository.findById(id).get());
-        return "coverLetter";
+        return "cover_letter";
     }
 
     @GetMapping("/addNewCoverLetter")
