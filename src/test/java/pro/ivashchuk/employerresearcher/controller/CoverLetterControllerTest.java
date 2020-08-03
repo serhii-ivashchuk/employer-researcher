@@ -38,7 +38,7 @@ class CoverLetterControllerTest {
     }
 
     @Test
-    public void testCoverLetterControllerReturnsAllVacanciesPageView() throws Exception {
+    public void testCoverLetterControllerReturnsAllCoverLettersPageView() throws Exception {
         mockMvc.perform(get("/coverLetters"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("all_cover_letters"))
@@ -72,7 +72,7 @@ class CoverLetterControllerTest {
         mockMvc.perform(delete("/coverLetters/coverLetter/" + coverLetterFromRepository.getId() + "/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/coverLetters"))
-                .andExpect(content().string(containsString(" Cover Letters")));
+                .andExpect(content().string(containsString("")));
     }
 
     @AfterAll
