@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Vacancies</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<h1>All Vacancies</h1><br>
+<div th:include="header"></div>
+<table width="100%">
+    <thead>
+    <tr>
+        <th width="5%"> #</th>
+        <th width="5%"> Id</th>
+        <th width="80%"> Vacancy name</th>
+        <th width="10%"> Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="vacancy : ${vacancies}">
+        <td class="Row_Number">
+            <script type="text/javascript">
+                var a = document.getElementsByClassName("Row_Number");
+                for (var i = 0; i < a.length; i++) {
+                    a[i].innerHTML = (i+1)+".";
+                    }
+            </script>
+        </td>
+        <td><span th:text="${vacancy.id}"> Id </span></td>
+        <td><a th:href="@{/vacancies/vacancy/{id}(id=${vacancy.id})}"><span th:text="${vacancy.name}">
+					Vacancy name</span></a>
+        </td>
+        <td>
+            <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}(id=${vacancy.id})}" th:method="GET">
+                <input class="Open_item_button"
+                       type="submit"
+                       value="Open"/>
+            </form>
+            <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}/change(id=${vacancy.id})}"
+                  th:method="GET">
+                <input class="Change_button"
+                       type="submit"
+                       value="Change"/>
+            </form>
+            <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}/delete(id=${vacancy.id})}"
+                  th:method="DELETE">
+                <input class="Delete_button"
+                       type="submit"
+                       value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
