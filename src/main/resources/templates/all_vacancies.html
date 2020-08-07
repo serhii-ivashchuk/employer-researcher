@@ -31,8 +31,8 @@
             </script>
         </td>
         <td><span th:text="${vacancy.id}"> Id </span></td>
-        <td><a th:href="@{/vacancies/vacancy/{id}(id=${vacancy.id})}"><span th:text="${vacancy.name}">
-					Vacancy name</span></a>
+        <td><a th:href="@{/vacancies/vacancy/{id}(id=${vacancy.id})}"><span th:text="${vacancy.position}">
+					Vacancy position name</span></a>
         </td>
         <td>
             <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}(id=${vacancy.id})}" th:method="GET">
