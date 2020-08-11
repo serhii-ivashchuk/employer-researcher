@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vacancy</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Vacancy</h1><br>
+<div th:object="${vacancy}">
+    <div class="row">
+        <span class="label">Position name </span>
+        <span class="field"
+              th:text="${vacancy.position}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Link </span>
+        <span class="field"
+              th:text="${vacancy.link}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Notes </span>
+        <span class="field"
+              th:text="${vacancy.notes}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Description </span>
+        <span class="field"
+              th:text="${vacancy.description}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Comment </span>
+        <span class="field"
+              th:text="${vacancy.comment}"></span><br>
+    </div>
+
+    <form th:action="@{/vacancies/vacancy/{id}/change(id=${vacancy.id})}"
+          th:method="GET">
+        <input class="Change_button"
+               type="submit"
+               value="Change"/>
+    </form>
+    <form th:action="@{/vacancies/vacancy/{id}/delete(id=${vacancy.id})}"
+          th:method="DELETE">
+        <input class="Delete_button"
+               type="submit"
+               value="Delete"/>
+    </form>
+</div>
+</body>
+</html>
