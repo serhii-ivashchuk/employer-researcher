@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Vacancy</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Update Vacancy</h1><br>
+<form class=" "
+      method="POST"
+      th:object="${vacancy}">
+    <input name="_method"
+           type="hidden"
+           value="put">
+    <div class="row">
+        <span class="label">Position </span>
+        <input id="position"
+               name="position"
+               th:attr='value=${vacancy.position}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">link </span>
+        <input id="link"
+               name="link"
+               th:attr='value=${vacancy.link}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">notes </span>
+        <input id="notes"
+               name="notes"
+               th:attr='value=${vacancy.notes}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">description </span>
+        <input id="description"
+               name="description"
+               th:attr='value=${vacancy.description}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">comment </span>
+        <input id="comment"
+               name="comment"
+               th:attr='value=${vacancy.comment}'
+               type="text"/><br></div>
+
+    <input class="Update_button"
+           type="submit"
+           value="Update vacancy"/><br>
+    </div>
+</form>
+<br>
+<form th:action="@{/vacancies/vacancy/{id}(id=${vacancy.id})}"
+      th:method="GET"
+      th:text="${vacancy.name}">
+    <input class="Open_item_button"
+           type="submit"
+           value="Open Vacancy"/>
+</form>
+<form th:action="@{/vacancies/vacancy/{id}/delete(id=${vacancy.id})}"
+      th:method="DELETE">
+    <input class="Delete_button"
+           type="submit"
+           value="Delete"/>
+</form>
+</body>
+</html>
