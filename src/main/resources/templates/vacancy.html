@@ -38,7 +38,7 @@
               th:text="${vacancy.comment}"></span><br>
     </div>
 
-    <form th:action="@{/vacancies/vacancy/{id}/change(id=${vacancy.id})}"
+    <form th:action="@{/vacancies/vacancy/{id}/update(id=${vacancy.id})}"
           th:method="GET">
         <input class="Change_button"
                type="submit"
