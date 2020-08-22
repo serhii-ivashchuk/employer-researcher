@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Resume</h1><br>
+<div th:object="${resume}">
+    <div class="row">
+        <span class="label">Resume name: </span>
+        <span class="field"
+              th:text="${resume.name}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Date: </span>
+        <span class="field"
+              th:text="${resume.date}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Summary: </span>
+        <span class="field"
+              th:text="${resume.summary}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Skills: </span>
+        <span class="field"
+              th:text="${resume.skills}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Projects: </span>
+        <span class="field"
+              th:text="${resume.projects}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Experience: </span>
+        <span class="field"
+              th:text="${resume.experience}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Education: </span>
+        <span class="field"
+              th:text="${resume.education}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Additional Information: </span>
+        <span class="field"
+              th:text="${resume.additionalInformation}"></span><br>
+    </div>
+</div>
+    <form th:action="@{/resumes/resume/{id}/change(id=${resume.id})}"
+          th:method="GET">
+        <input class="Change_button"
+               type="submit"
+               value="Change"/>
+    </form>
+    <form th:action="@{/resumes/resume/{id}/delete(id=${resume.id})}"
+          th:method="DELETE">
+        <input class="Delete_button"
+               type="submit"
+               value="Delete"/>
+    </form>
+</body>
+</html>
