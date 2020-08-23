@@ -43,16 +43,36 @@
                type="text"/><br>
     </div>
     <div class="row">
-        <span class="label">Signature: </span>
-        <input id="signature"
-               name="signature"
-               th:attr='value=${resume.signature}'
+        <span class="label">Projects: </span>
+        <input id="projects"
+               name="projects"
+               th:attr='value=${resume.projects}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Experience: </span>
+        <input id="experience"
+               name="experience"
+               th:attr='value=${resume.experience}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Education: </span>
+        <input id="education"
+               name="education"
+               th:attr='value=${resume.education}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Additional information: </span>
+        <input id="additionalInformation"
+               name="additionalInformation"
+               th:attr='value=${resume.additionalInformation}'
                type="text"/><br>
     </div>
     <input class="Add_button"
            type="submit"
            value="Add resume"/><br>
-    </div>
 </form>
 <form th:action="@{/resumes/resume/{id}/change(id=${resume.id})}"
       th:method="GET">
