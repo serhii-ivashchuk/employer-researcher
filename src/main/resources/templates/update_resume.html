@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Resume</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Update Resume</h1><br>
+<form class=" "
+      method="POST"
+      th:object="${resume}">
+    <input name="_method"
+           type="hidden"
+           value="put">
+    <div class="row">
+        <span class="label">Name: </span>
+        <input id="name"
+               name="name"
+               th:attr='value=${resume.name}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Date: </span>
+        <input id="date"
+               name="date"
+               th:attr='value=${resume.date}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Summary: </span>
+        <input id="summary"
+               name="summary"
+               th:attr='value=${resume.summary}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">Skills: </span>
+        <input id="skills"
+               name="summary"
+               th:attr='value=${resume.skills}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">Projects: </span>
+        <input id="projects"
+               name="projects"
+               th:attr='value=${resume.projects}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">Experience: </span>
+        <input id="experience"
+               name="experience"
+               th:attr='value=${resume.experience}'
+               type="text"/><br></div>
+    <div class="row">
+        <span class="label">Education: </span>
+        <input id="education"
+               name="education"
+               th:attr='value=${resume.education}'
+               type="text"/><br></div>
+   <div class="row">
+       <span class="label">Additional Information: </span>
+       <input id="additionalInformation"
+              name="additionalInformation"
+              th:attr='value=${resume.additionalInformation}'
+              type="text"/><br></div>
+
+    <input class="Update_button"
+           type="submit"
+           value="Update Resume"/><br>
+    </div>
+</form>
+<br>
+<form th:action="@{/resumes/resume/{id}(id=${resume.id})}"
+      th:method="GET"
+      th:text="${resume.name}">
+    <input class="Open_item_button"
+           type="submit"
+           value="Open Vacancy"/>
+</form>
+<form th:action="@{/resumes/resume/{id}/delete(id=${resume.id})}"
+      th:method="DELETE">
+    <input class="Delete_button"
+           type="submit"
+           value="Delete"/>
+</form>
+</body>
+</html>
