@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cover Letter</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Cover Letter</h1><br>
+<div th:object="${coverLetter}">
+    <div class="row">
+        <span class="label">Cover Letter name: </span>
+        <span class="field"
+              th:text="${coverLetter.name}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Date: </span>
+        <span class="field"
+              th:text="${coverLetter.date}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Salutation: </span>
+        <span class="field"
+              th:text="${coverLetter.salutation}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Closing </span>
+        <span class="field"
+              th:text="${coverLetter.closing}"></span><br>
+    </div>
+    <div class="row">
+        <span class="label">Signature </span>
+        <span class="field"
+              th:text="${coverLetter.signature}"></span><br>
+    </div>
+</div>
+<form th:action="@{/coverLetters/coverLetter/{id}/change(id=${coverLetter.id})}"
+      th:method="GET">
+    <input class="Change_button"
+           type="submit"
+           value="Change"/>
+</form>
+<form th:action="@{/coverLetters/coverLetter/{id}/delete(id=${coverLetter.id})}"
+      th:method="DELETE">
+    <input class="Delete_button"
+           type="submit"
+           value="Delete"/>
+</form>
+</body>
+</html>
