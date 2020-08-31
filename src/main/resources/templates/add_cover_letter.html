@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Cover Letter</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div th:include="header"></div>
+<h1>Add Cover Letter</h1><br>
+<form class=" "
+      method="POST"
+      th:object="${coverLetter}">
+    <div class="row">
+        <span class="label">Name: </span>
+        <input id="name"
+               name="name"
+               th:attr='value=${coverLetter.name}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Date: </span>
+        <input id="date"
+               name="date"
+               th:attr='value=${coverLetter.date}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Salutation: </span>
+        <input id="salutation"
+               name="salutation"
+               th:attr='value=${coverLetter.salutation}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Closing: </span>
+        <input id="closing"
+               name="closing"
+               th:attr='value=${coverLetter.closing}'
+               type="text"/><br>
+    </div>
+    <div class="row">
+        <span class="label">Signature: </span>
+        <input id="signature"
+               name="signature"
+               th:attr='value=${coverLetter.signature}'
+               type="text"/><br>
+    </div>
+    <input class="Add_button"
+           type="submit"
+           value="Add Cover Letter"/><br>
+    </div>
+</form>
+
+<form th:action="@{/coverLetters/coverLetter/{id}/change(id=${coverLetter.id})}"
+      th:method="GET">
+    <input class="Change_button"
+           type="submit"
+           value="Change"/>
+</form>
+<form th:action="@{/coverLetters/coverLetter/{id}/delete(id=${coverLetter.id})}"
+      th:method="DELETE">
+    <input class="Delete_button"
+           type="submit"
+           value="Delete"/>
+</form>
+</div>
+</body>
+</html>
