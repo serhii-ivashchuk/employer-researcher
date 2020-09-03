@@ -17,4 +17,9 @@ public class EmployerRestController {
 
     @Autowired
     private JpaEmployerRepository jpaEmployerRepository;
+
+    @GetMapping(produces = "application/json")
+    public List<Employer> getAllEmployers() {
+        return jpaEmployerRepository.findAll();
+    }
 }
