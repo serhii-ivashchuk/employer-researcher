@@ -22,4 +22,9 @@ public class EmployerRestController {
     public List<Employer> getAllEmployers() {
         return jpaEmployerRepository.findAll();
     }
+
+    @GetMapping(path = "/employer/{id}", produces = "application/json")
+    public Employer getEmployerById(@PathVariable("id")  Long id) {
+        return jpaEmployerRepository.findById(id).get();
+    }
 }
