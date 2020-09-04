@@ -27,4 +27,10 @@ public class EmployerRestController {
     public Employer getEmployerById(@PathVariable("id")  Long id) {
         return jpaEmployerRepository.findById(id).get();
     }
+
+    @PostMapping("/employer/addNewEmployer")
+    public HttpStatus addNewEmployer(@RequestBody Employer employer) {
+        jpaEmployerRepository.save(employer);
+        return HttpStatus.CREATED;
+    }
 }
