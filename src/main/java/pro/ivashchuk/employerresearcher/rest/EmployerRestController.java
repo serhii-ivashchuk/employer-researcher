@@ -33,4 +33,15 @@ public class EmployerRestController {
         jpaEmployerRepository.save(employer);
         return HttpStatus.CREATED;
     }
+
+    @PutMapping("/employer/{id}/update")
+    public ResponseEntity<Employer> updateEmployer(@PathVariable("id") Long id,
+                                                   Employer updatedEmployer) {
+        Optional<Employer> employerData = jpaEmployerRepository.findById(id);
+        if (employerData.isPresent()) {
+            return new ResponseEntity<>(jpaEmployerRepository.save(updatedEmployer), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
