@@ -20,8 +20,10 @@ public class CoverLetter implements Comparable<CoverLetter> {
     private Long id;
     private String name;
     private String date;
+    @Column(length = 10_000)
     private String salutation;
     private String[] paragraphs;
+    @Column(length = 10_000)
     private String closing;
     private String signature;
 

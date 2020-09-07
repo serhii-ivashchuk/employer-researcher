@@ -22,6 +22,7 @@ public class Employer implements Comparable<Employer> {
     private Long id;
     private String name;
     private String fullName;
+    @Column(length = 10_000)
     private String address;
     private String email;
     private String website;

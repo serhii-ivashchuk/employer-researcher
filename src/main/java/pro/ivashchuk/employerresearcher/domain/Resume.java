@@ -20,24 +20,28 @@ public class Resume implements Comparable<Resume> {
     private Long id;
     private String name;
     private String date;
+    @Column(length = 10_000)
     private String summary;
+    @Column(length = 10_000)
     private String skills;
+    @Column(length = 10_000)
     private String projects;
     private String experience;
+    @Column(length = 10_000)
     private String education;
+    @Column(length = 10_000)
     private String additionalInformation;
 
     @JsonIgnore
     @ManyToOne
     private Vacancy vacancy;
 
-    public Resume(String name, String date, String summary, String skills, String projects, String experience, String education, String additionalInformation) {
+    public Resume(String name, String date, String summary, String skills, String projects, String education, String additionalInformation) {
         this.name = name;
         this.date = date;
         this.summary = summary;
         this.skills = skills;
         this.projects = projects;
-        this.experience = experience;
         this.education = education;
         this.additionalInformation = additionalInformation;
     }
