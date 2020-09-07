@@ -69,7 +69,7 @@ class JpaCoverLetterRepositoryTest {
 
         assertEquals("newName", coverLetterAfterUpdate.getName(), "Names should be equal");
         assertEquals(coverLetterBeforeUpdate.getId(), coverLetterAfterUpdate.getId(), "Id's should be equal");
-        assertEquals(coverLetterBeforeUpdate.getParagraphs(), coverLetterAfterUpdate.getParagraphs(), "Paragraphs " +
+        assertEquals(coverLetterBeforeUpdate.getMainPart(), coverLetterAfterUpdate.getMainPart(), "Paragraphs " +
                 "should be " +
                 "equal");
     }
