@@ -22,7 +22,8 @@ public class CoverLetter implements Comparable<CoverLetter> {
     private String date;
     @Column(length = 10_000)
     private String salutation;
-    private String[] paragraphs;
+    @Column(length = 10_000)
+    private String mainPart;
     @Column(length = 10_000)
     private String closing;
     private String signature;
@@ -31,11 +32,11 @@ public class CoverLetter implements Comparable<CoverLetter> {
     @ManyToOne
     private Vacancy vacancy;
 
-    public CoverLetter(String name, String date, String salutation, String[] paragraphs, String closing, String signature) {
+    public CoverLetter(String name, String date, String salutation, String mainPart, String closing, String signature) {
         this.name = name;
         this.date = date;
         this.salutation = salutation;
-        this.paragraphs = paragraphs;
+        this.mainPart = mainPart;
         this.closing = closing;
         this.signature = signature;
     }
