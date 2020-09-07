@@ -97,7 +97,7 @@ class JpaCoverLetterRepositoryTest {
     }
 
     private CoverLetter getCoverLetter(String name, String date) {
-        return new CoverLetter(name, date, "Salutation", new String[]{"First", "Second", "Third"}, "Closing",
+        return new CoverLetter(name, date, "Salutation", "Main Part", "Closing",
                 "Signature");
     }
 
