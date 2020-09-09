@@ -44,4 +44,10 @@ public class EmployerRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("employer/{id}/delete")
+    public String deleteEmployer(@PathVariable("id") Long id) {
+        jpaEmployerRepository.deleteById(id);
+        return "redirect:localhost:4200/employerList";
+    }
 }
