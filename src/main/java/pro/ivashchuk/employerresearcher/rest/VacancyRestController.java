@@ -1,10 +1,7 @@
 package pro.ivashchuk.employerresearcher.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pro.ivashchuk.employerresearcher.domain.Vacancy;
 import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
@@ -21,5 +18,10 @@ public class VacancyRestController {
     @GetMapping(produces = "application/json")
     public List<Vacancy> getAllVacancies() {
         return jpaVacancyRepository.findAll();
+    }
+
+    @GetMapping(path = "/vacancy/{id}", produces = "application/json")
+    public Vacancy getVacancyById(@PathVariable("id") Long id) {
+        return jpaVacancyRepository.findById(id).get();
     }
 }
