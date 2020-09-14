@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pro.ivashchuk.employerresearcher.domain.Employer;
 import pro.ivashchuk.employerresearcher.domain.Vacancy;
+import pro.ivashchuk.employerresearcher.repository.JpaEmployerRepository;
 import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
 import java.util.List;
@@ -18,6 +20,9 @@ public class VacancyRestController {
     @Autowired
     private JpaVacancyRepository jpaVacancyRepository;
 
+    @Autowired
+    private JpaEmployerRepository jpaEmployerRepository;
+
     @GetMapping(produces = "application/json")
     public List<Vacancy> getAllVacancies() {
         return jpaVacancyRepository.findAll();
@@ -28,12 +33,16 @@ public class VacancyRestController {
         return jpaVacancyRepository.findById(id).get();
     }
 
-    @PostMapping("/vacancy/addNewVacancy")
-    public HttpStatus addNewVacancy(@RequestBody Vacancy vacancy) {
+    @PostMapping("/vacancy/addNewVacancy/whereEmployerId/{id}")
+    public HttpStatus postNewVacancyWhereEmployerId(@PathVariable("id") Long id, @RequestBody Vacancy vacancy) {
+        Employer employer = jpaEmployerRepository.findById(id).get();
+        jpaVacancyRepository.save(vacancy);
+        employer.getVacancies().add(vacancy);
+        jpaEmployerRepository.save(employer);
+        vacancy.setEmployer(employer);
         jpaVacancyRepository.save(vacancy);
         return HttpStatus.CREATED;
     }
-
 
     @PatchMapping("/vacancy/{id}/update")
     public ResponseEntity<Vacancy> updateVacancy(@PathVariable("id") Long id,
