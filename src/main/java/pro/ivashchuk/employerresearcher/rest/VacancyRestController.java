@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pro.ivashchuk.employerresearcher.domain.Resume;
 import pro.ivashchuk.employerresearcher.domain.Vacancy;
+import pro.ivashchuk.employerresearcher.repository.JpaResumeRepository;
 import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
 import java.util.List;
@@ -45,5 +47,11 @@ public class VacancyRestController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @DeleteMapping("/vacancy/{id}/delete")
+    public String deleteVacancy(@PathVariable("id") Long id) {
+        jpaVacancyRepository.delete(jpaVacancyRepository.findById(id).get());
+        return "redirect:localhost:4200/vacancyList";
     }
 }
