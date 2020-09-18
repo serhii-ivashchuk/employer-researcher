@@ -25,6 +25,7 @@ public class Vacancy implements Comparable<Vacancy> {
     private String notes;
     private String description;
     private String comment;
+    private Employer employer;
 
     public Vacancy(String position, String link, String notes, String description, String comment) {
         this.position = position;
