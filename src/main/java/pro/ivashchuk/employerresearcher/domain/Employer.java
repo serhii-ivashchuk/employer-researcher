@@ -44,6 +44,11 @@ public class Employer implements Comparable<Employer> {
         return vacancy;
     }
 
+    public Vacancy deleteVacancyFromVacancies(Vacancy vacancy) {
+        vacancies.remove(vacancy);
+        return vacancy;
+    }
+
     @Override
     public int compareTo(Employer employer) {
         return (this.getName().compareTo(employer.getName()));
