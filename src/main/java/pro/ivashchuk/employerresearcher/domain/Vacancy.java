@@ -35,6 +35,14 @@ public class Vacancy implements Comparable<Vacancy> {
         this.comment = comment;
     }
 
+    public Employer getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
+
     @Override
     public int compareTo(Vacancy vacancy) {
         return (this.getPosition().compareTo(vacancy.getPosition()));
