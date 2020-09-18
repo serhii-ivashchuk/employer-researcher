@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
@@ -20,6 +22,8 @@ public class Employer implements Comparable<Employer> {
     private String address;
     private String email;
     private String website;
+
+    private List<Vacancy> vacancies = new ArrayList<>();
 
     public Employer(String name, String fullName, String address, String email, String website) {
         this.name = name;
