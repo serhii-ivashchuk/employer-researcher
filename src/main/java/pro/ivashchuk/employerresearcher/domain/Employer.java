@@ -23,6 +23,8 @@ public class Employer implements Comparable<Employer> {
     private String email;
     private String website;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer", fetch = FetchType.EAGER,
+            orphanRemoval = true)
     private List<Vacancy> vacancies = new ArrayList<>();
 
     public Employer(String name, String fullName, String address, String email, String website) {
