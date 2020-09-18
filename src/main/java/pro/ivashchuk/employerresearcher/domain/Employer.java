@@ -33,6 +33,10 @@ public class Employer implements Comparable<Employer> {
         this.website = website;
     }
 
+    public List<Vacancy> getVacancies() {
+        return vacancies;
+    }
+
     @Override
     public int compareTo(Employer employer) {
         return (this.getName().compareTo(employer.getName()));
