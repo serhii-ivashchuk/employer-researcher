@@ -14,10 +14,10 @@
 <table width="100%">
     <thead>
     <tr>
-        <th width="5%"> #</th>
-        <th width="5%"> Id</th>
-        <th width="80%"> Company name</th>
-        <th width="10%"> Actions</th>
+        <th width="5%"><h5>#</h5></th>
+        <th width="5%"><h5>Id</h5></th>
+        <th width="80%"><h5>Company name</h5></th>
+        <th width="10%"><h5>Actions</h5></th>
     </tr>
     </thead>
     <tbody>
@@ -35,7 +35,7 @@
 					Company name</span></a>
             <br>
             <details>
-                <summary><h3>Vacancies for this Employer:</h3></summary>
+                <summary><h5>Vacancies for this Employer:</h5></summary>
                 <div th:each="vacancy : ${employer.vacancies}">
                     <a th:href="@{/vacancies/vacancy/{id}(id=${vacancy.id})}"><span th:text="${vacancy.position}">
 					Position</span></a><br>
@@ -51,19 +51,19 @@
                        value="Add New Vacancy"/></form>
             <br>
             <form style="display: inline;" th:action="@{/employers/employer/{id}(id=${employer.id})}" th:method="GET">
-                <input class="Open_item_button"
+                <input class="btn btn-success"
                        type="submit"
                        value="Open"/>
             </form>
             <form style="display: inline;" th:action="@{/employers/employer/{id}/change(id=${employer.id})}"
                   th:method="GET">
-                <input class="Change_button"
+                <input class="btn btn-warning"
                        type="submit"
                        value="Change"/>
             </form>
             <form style="display: inline;" th:action="@{/employers/employer/{id}/delete(id=${employer.id})}"
                   th:method="DELETE">
-                <input class="Delete_button"
+                <input class="btn btn-danger"
                        type="submit"
                        value="Delete"/>
             </form>
