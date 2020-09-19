@@ -46,6 +46,18 @@
                        type="submit"
                        value="Change"/>
             </form>
+            <form style="display: inline;"
+                  th:action="@{/resumes/addNewResume/whereVacancyId/{id}(id=${vacancy.id})}"
+                  th:method="GET">
+                <input class="btn btn-warning"
+                       type="submit"
+                       value="Add New Resume"/></form>
+            <form style="display: inline;"
+                  th:action="@{/coverLetters/addNewCoverLetter/whereVacancyId/{id}(id=${vacancy.id})}"
+                  th:method="GET">
+                <input class="btn btn-warning"
+                       type="submit"
+                       value="Add New Cover Letter"/></form>
             <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}/delete(id=${vacancy.id})}"
                   th:method="DELETE">
                 <input class="Delete_button"
