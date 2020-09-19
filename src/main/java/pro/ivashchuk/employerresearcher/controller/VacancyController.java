@@ -45,10 +45,16 @@ public class VacancyController {
         return "add_vacancy";
     }
 
-    @PostMapping("/addNewVacancy")
-    public String postNewVacancy(Vacancy vacancy) {
+    @PostMapping("/addNewVacancy/whereEmployerId/{id}")
+    public String postNewVacancyWhereEmployerId(@PathVariable("id") Long id, Vacancy vacancy) {
+        Employer employer = jpaEmployerRepository.findById(id).get();
         jpaVacancyRepository.save(vacancy);
-        return "redirect:/vacancies";
+        employer.getVacancies().add(vacancy);
+        jpaEmployerRepository.save(employer);
+        vacancy.setEmployer(employer);
+        jpaVacancyRepository.save(vacancy);
+        String vacId = vacancy.getId().toString();
+        return "redirect:/vacancies/vacancy/" + vacId;
     }
 
     @GetMapping("/vacancy/{id}/update")
