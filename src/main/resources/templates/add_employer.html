@@ -46,20 +46,20 @@
                name="website"
                th:attr='value=${employer.website}'
                type="text"/><br></div>
-    <input class="Add_button"
+    <input class="btn btn-success"
            type="submit"
            value="Add employer"/><br>
     </div>
 </form>
 <form th:action="@{/employers/employer/{id}/change(id=${employer.id})}"
       th:method="GET">
-    <input class="Change_button"
+    <input class="btn btn-warning"
            type="submit"
            value="Change"/>
 </form>
 <form th:action="@{/employers/employer/{id}/delete(id=${employer.id})}"
       th:method="DELETE">
-    <input class="Delete_button"
+    <input class="btn btn-danger"
            type="submit"
            value="Delete"/>
 </form>

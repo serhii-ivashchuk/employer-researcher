@@ -36,13 +36,13 @@
         </td>
         <td>
             <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}(id=${vacancy.id})}" th:method="GET">
-                <input class="Open_item_button"
+                <input class="btn btn-success"
                        type="submit"
                        value="Open"/>
             </form>
             <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}/update(id=${vacancy.id})}"
                   th:method="GET">
-                <input class="Change_button"
+                <input class="btn btn-warning"
                        type="submit"
                        value="Change"/>
             </form>
@@ -60,7 +60,7 @@
                        value="Add New Cover Letter"/></form>
             <form style="display: inline;" th:action="@{/vacancies/vacancy/{id}/delete(id=${vacancy.id})}"
                   th:method="DELETE">
-                <input class="Delete_button"
+                <input class="btn danger"
                        type="submit"
                        value="Delete"/>
             </form>

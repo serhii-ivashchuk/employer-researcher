@@ -40,7 +40,7 @@
                name="signature"
                th:attr='value=${coverLetter.signature}'
                type="text"/><br></div>
-    <input class="Update_button"
+    <input class="btn btn-warning"
            type="submit"
            value="Update Cover Letter"/><br>
     </div>
@@ -49,13 +49,13 @@
 <form th:action="@{/coverLetters/coverLetter/{id}(id=${coverLetter.id})}"
       th:method="GET"
       th:text="${coverLetter.name}">
-    <input class="Open_item_button"
+    <input class="btn btn-success"
            type="submit"
            value="Open Cover Letter"/>
 </form>
 <form th:action="@{/coverLetters/coverLetter/{id}/delete(id=${coverLetter.id})}"
       th:method="DELETE">
-    <input class="Delete_button"
+    <input class="btn btn-danger"
            type="submit"
            value="Delete"/>
 </form>

@@ -65,7 +65,7 @@
               th:attr='value=${resume.additionalInformation}'
               type="text"/><br></div>
 
-    <input class="Update_button"
+    <input class="btn btn-warning"
            type="submit"
            value="Update Resume"/><br>
     </div>
@@ -74,13 +74,13 @@
 <form th:action="@{/resumes/resume/{id}(id=${resume.id})}"
       th:method="GET"
       th:text="${resume.name}">
-    <input class="Open_item_button"
+    <input class="btn btn-success"
            type="submit"
            value="Open Vacancy"/>
 </form>
 <form th:action="@{/resumes/resume/{id}/delete(id=${resume.id})}"
       th:method="DELETE">
-    <input class="Delete_button"
+    <input class="btn btn-danger"
            type="submit"
            value="Delete"/>
 </form>

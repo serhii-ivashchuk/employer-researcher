@@ -40,13 +40,13 @@
 
     <form th:action="@{/employers/employer/{id}/change(id=${employer.id})}"
           th:method="GET">
-        <input class="Change_button"
+        <input class="btn btn-warning"
                type="submit"
                value="Change"/>
     </form>
     <form th:action="@{/employers/employer/{id}/delete(id=${employer.id})}"
           th:method="DELETE">
-        <input class="Delete_button"
+        <input class="btn btn-danger"
                type="submit"
                value="Delete"/>
     </form>

@@ -55,13 +55,13 @@
 </div>
     <form th:action="@{/resumes/resume/{id}/change(id=${resume.id})}"
           th:method="GET">
-        <input class="Change_button"
+        <input class="btn btn-warning"
                type="submit"
                value="Change"/>
     </form>
     <form th:action="@{/resumes/resume/{id}/delete(id=${resume.id})}"
           th:method="DELETE">
-        <input class="Delete_button"
+        <input class="btn btn-danger"
                type="submit"
                value="Delete"/>
     </form>

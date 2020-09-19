@@ -36,19 +36,19 @@
         </td>
         <td>
             <form style="display: inline;" th:action="@{/coverLetters/coverLetter/{id}(id=${coverLetter.id})}" th:method="GET">
-                <input class="Open_item_button"
+                <input class="btn btn-success"
                        type="submit"
                        value="Open"/>
             </form>
             <form style="display: inline;" th:action="@{/coverLetters/coverLetter/{id}/change(id=${coverLetter.id})}"
                   th:method="GET">
-                <input class="Change_button"
+                <input class="btn btn-warning"
                        type="submit"
                        value="Change"/>
             </form>
             <form style="display: inline;" th:action="@{/coverLetters/coverLetter/{id}/delete(id=${coverLetter.id})}"
                   th:method="DELETE">
-                <input class="Delete_button"
+                <input class="btn btn-danger"
                        type="submit"
                        value="Delete"/>
             </form>
