@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pro.ivashchuk.employerresearcher.domain.Employer;
 import pro.ivashchuk.employerresearcher.domain.Vacancy;
+import pro.ivashchuk.employerresearcher.repository.JpaEmployerRepository;
 import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
 import java.util.ArrayList;
@@ -17,6 +19,9 @@ public class VacancyController {
 
     @Autowired
     private JpaVacancyRepository jpaVacancyRepository;
+
+    @Autowired
+    private JpaEmployerRepository jpaEmployerRepository;
 
     @GetMapping
     public String getAllVacancies(Model model) {
@@ -32,8 +37,10 @@ public class VacancyController {
         return "vacancy";
     }
 
-    @GetMapping("/addNewVacancy")
-    public String getAddNewVacancy(Model model) {
+    @GetMapping("/addNewVacancy/whereEmployerId/{id}")
+    public String getAddNewVacancyWhereEmployerId(@PathVariable("id") Long id, Model model) {
+        Employer employer = jpaEmployerRepository.findById(id).get();
+        model.addAttribute("employer", employer);
         model.addAttribute("vacancy", new Vacancy());
         return "add_vacancy";
     }
