@@ -57,6 +57,10 @@ public class Vacancy implements Comparable<Vacancy> {
         return resumes;
     }
 
+    public List<CoverLetter> getCoverLetters() {
+        return coverLetters;
+    }
+
     public Resume addResumeToResumes(Resume resume) {
         resumes.add(resume);
         return resume;
