@@ -36,6 +36,14 @@ public class CoverLetter implements Comparable<CoverLetter> {
         this.signature = signature;
     }
 
+    public Vacancy getVacancy() {
+        return vacancy;
+    }
+
+    public void setVacancy(Vacancy vacancy) {
+        this.vacancy = vacancy;
+    }
+
     @Override
     public int compareTo(CoverLetter coverLetter) {
         return (this.getName().compareTo(coverLetter.getName()));
