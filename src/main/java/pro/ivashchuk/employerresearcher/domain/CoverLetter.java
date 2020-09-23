@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class CoverLetter implements Comparable<CoverLetter> {
     private String closing;
     private String signature;
 
+    @JsonIgnore
     @ManyToOne
     private Vacancy vacancy;
 
