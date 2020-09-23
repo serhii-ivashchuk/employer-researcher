@@ -35,6 +35,8 @@ public class Vacancy implements Comparable<Vacancy> {
             orphanRemoval = true)
     private List<Resume> resumes = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacancy", fetch = FetchType.LAZY,
+            orphanRemoval = true)
     private List<CoverLetter> coverLetters = new ArrayList<>();
 
     public Vacancy(String position, String link, String notes, String description, String comment) {
