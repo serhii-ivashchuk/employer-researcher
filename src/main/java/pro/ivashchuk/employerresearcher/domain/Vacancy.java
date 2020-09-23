@@ -73,6 +73,16 @@ public class Vacancy implements Comparable<Vacancy> {
         return resume;
     }
 
+    public CoverLetter addCoverLetterToCoverLetters(CoverLetter coverLetter) {
+        coverLetters.add(coverLetter);
+        return coverLetter;
+    }
+
+    public CoverLetter deleteCoverLetterFromCoverLetters(CoverLetter coverLetter) {
+        coverLetters.remove(coverLetter);
+        return coverLetter;
+    }
+
     @Override
     public int compareTo(Vacancy vacancy) {
         return (this.getPosition().compareTo(vacancy.getPosition()));
