@@ -55,6 +55,16 @@ public class Vacancy implements Comparable<Vacancy> {
         return resumes;
     }
 
+    public Resume addResumeToResumes(Resume resume) {
+        resumes.add(resume);
+        return resume;
+    }
+
+    public Resume deleteResumeFromResumes(Resume resume) {
+        resumes.remove(resume);
+        return resume;
+    }
+
     @Override
     public int compareTo(Vacancy vacancy) {
         return (this.getPosition().compareTo(vacancy.getPosition()));
