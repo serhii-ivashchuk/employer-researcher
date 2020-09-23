@@ -42,6 +42,14 @@ public class Resume implements Comparable<Resume> {
         this.additionalInformation = additionalInformation;
     }
 
+    public Vacancy getVacancy() {
+        return vacancy;
+    }
+
+    public void setVacancy(Vacancy vacancy) {
+        this.vacancy = vacancy;
+    }
+
     @Override
     public int compareTo(Resume resume) {
         return (this.getName().compareTo(resume.getName()));
