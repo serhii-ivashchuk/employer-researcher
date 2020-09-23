@@ -27,6 +27,8 @@ public class CoverLetter implements Comparable<CoverLetter> {
     private String closing;
     private String signature;
 
+    private Vacancy vacancy;
+
     public CoverLetter(String name, String date, String salutation, String[] paragraphs, String closing, String signature) {
         this.name = name;
         this.date = date;
