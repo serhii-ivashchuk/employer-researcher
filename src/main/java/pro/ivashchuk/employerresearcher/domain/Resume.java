@@ -29,6 +29,8 @@ public class Resume implements Comparable<Resume> {
     private String education;
     private String additionalInformation;
 
+    private Vacancy vacancy;
+
     public Resume(String name, String date, String summary, String skills, String projects, String experience, String education, String additionalInformation) {
         this.name = name;
         this.date = date;
