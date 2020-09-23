@@ -29,6 +29,8 @@ public class Vacancy implements Comparable<Vacancy> {
     @ManyToOne
     private Employer employer;
 
+    private List<Resume> resumes = new ArrayList<>();
+
     public Vacancy(String position, String link, String notes, String description, String comment) {
         this.position = position;
         this.link = link;
