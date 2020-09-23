@@ -24,6 +24,7 @@ public class CoverLetter implements Comparable<CoverLetter> {
     private String closing;
     private String signature;
 
+    @ManyToOne
     private Vacancy vacancy;
 
     public CoverLetter(String name, String date, String salutation, String[] paragraphs, String closing, String signature) {
