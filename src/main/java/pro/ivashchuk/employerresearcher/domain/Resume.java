@@ -1,5 +1,6 @@
 package pro.ivashchuk.employerresearcher.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class Resume implements Comparable<Resume> {
     private String education;
     private String additionalInformation;
 
+    @JsonIgnore
     @ManyToOne
     private Vacancy vacancy;
 
