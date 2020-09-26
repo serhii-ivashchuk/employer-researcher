@@ -18,6 +18,9 @@ public class ResumeController {
     @Autowired
     private JpaResumeRepository jpaResumeRepository;
 
+    @Autowired
+    private JpaVacancyRepository jpaVacancyRepository;
+
     @GetMapping
     public String getAllResumes(Model model) {
         List<Resume> resumes = new ArrayList<Resume>(jpaResumeRepository.findAll());
@@ -32,8 +35,10 @@ public class ResumeController {
         return "resume";
     }
 
-    @GetMapping("/addNewResume")
-    public String getAddNewResume(Model model) {
+    @GetMapping("/addNewResume/whereVacancyId/{id}")
+    public String getAddNewResumeWhereVacancyId(@PathVariable("id") Long id, Model model) {
+        Vacancy vacancy = jpaVacancyRepository.findById(id).get();
+        model.addAttribute("vacancy", vacancy);
         model.addAttribute("resume", new Resume());
         return "add_resume";
     }
