@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pro.ivashchuk.employerresearcher.domain.Resume;
+import pro.ivashchuk.employerresearcher.domain.Vacancy;
 import pro.ivashchuk.employerresearcher.repository.JpaResumeRepository;
+import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,10 +45,16 @@ public class ResumeController {
         return "add_resume";
     }
 
-    @PostMapping("/addNewResume")
-    public String postNewResume(Resume resume) {
+    @PostMapping("/addNewResume/whereVacancyId/{id}")
+    public String postNewResumeWhereVacancyId(@PathVariable("id") Long id, Resume resume) {
+        Vacancy vacancy = jpaVacancyRepository.findById(id).get();
         jpaResumeRepository.save(resume);
-        return "redirect:/resumes";
+        vacancy.getResumes().add(resume);
+        jpaVacancyRepository.save(vacancy);
+        resume.setVacancy(vacancy);
+        jpaResumeRepository.save(resume);
+        String resId = resume.getId().toString();
+        return "redirect:/resumes/resume/"+ resId;
     }
 
     @GetMapping("/resume/{id}/update")
