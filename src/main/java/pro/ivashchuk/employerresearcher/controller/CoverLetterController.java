@@ -45,10 +45,16 @@ public class CoverLetterController {
         return "add_cover_letter";
     }
 
-    @PostMapping("/addNewCoverLetter")
-    public String postNewCoverLetter(CoverLetter coverLetter) {
+    @PostMapping("/addNewCoverLetter/whereVacancyId/{id}")
+    public String postNewCoverLetterWhereVacancyId(@PathVariable("id") Long id, CoverLetter coverLetter) {
+        Vacancy vacancy = jpaVacancyRepository.findById(id).get();
         jpaCoverLetterRepository.save(coverLetter);
-        return "redirect:/coverLetters";
+        vacancy.getCoverLetters().add(coverLetter);
+        jpaVacancyRepository.save(vacancy);
+        coverLetter.setVacancy(vacancy);
+        jpaCoverLetterRepository.save(coverLetter);
+        String covLetId = coverLetter.getId().toString();
+        return "redirect:/coverLetters/coverLetter/"+ covLetId;
     }
 
     @GetMapping("/coverLetter/{id}/update")
