@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pro.ivashchuk.employerresearcher.domain.CoverLetter;
+import pro.ivashchuk.employerresearcher.domain.Vacancy;
 import pro.ivashchuk.employerresearcher.repository.JpaCoverLetterRepository;
+import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +19,9 @@ public class CoverLetterController {
 
     @Autowired
     private JpaCoverLetterRepository jpaCoverLetterRepository;
+
+    @Autowired
+    private JpaVacancyRepository jpaVacancyRepository;
 
     @GetMapping
     public String getAllCoverLetters(Model model) {
@@ -32,8 +37,10 @@ public class CoverLetterController {
         return "cover_letter";
     }
 
-    @GetMapping("/addNewCoverLetter")
-    public String getAddNewCoverLetter(Model model) {
+    @GetMapping("/addNewCoverLetter/whereVacancyId/{id}")
+    public String getAddNewCoverLetterWhereVacancyId(@PathVariable("id") Long id, Model model) {
+        Vacancy vacancy = jpaVacancyRepository.findById(id).get();
+        model.addAttribute("vacancy", vacancy);
         model.addAttribute("coverLetter", new CoverLetter());
         return "add_cover_letter";
     }
