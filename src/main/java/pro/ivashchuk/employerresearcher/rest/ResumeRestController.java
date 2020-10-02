@@ -22,4 +22,9 @@ public class ResumeRestController {
     public List<Resume> getAllResumes() {
         return jpaResumeRepository.findAll();
     }
+
+    @GetMapping(path = "/resume/{id}", produces = "application/json")
+    public Resume getResumeById(@PathVariable("id") Long id) {
+        return jpaResumeRepository.findById(id).get();
+    }
 }
