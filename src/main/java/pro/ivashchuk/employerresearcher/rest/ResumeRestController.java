@@ -55,4 +55,10 @@ public class ResumeRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/resume/{id}/delete")
+    public String deleteResume(@PathVariable("id") Long id) {
+        jpaResumeRepository.delete(jpaResumeRepository.findById(id).get());
+        return "redirect:localhost:4200/resumeList";
+    }
 }
