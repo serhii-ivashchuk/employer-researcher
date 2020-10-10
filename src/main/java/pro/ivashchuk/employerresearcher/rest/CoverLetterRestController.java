@@ -20,4 +20,9 @@ public class CoverLetterRestController {
 	public List<CoverLetter> getAllCoverLetters() {
 		return jpaCoverLetterRepository.findAll();
 	}
+
+	@GetMapping(path = "/coverLetter/{id}", produces = "application/json")
+	public CoverLetter getCoverLetterById(@PathVariable("id") Long id) {
+		return jpaCoverLetterRepository.findById(id).get();
+	}
 }
