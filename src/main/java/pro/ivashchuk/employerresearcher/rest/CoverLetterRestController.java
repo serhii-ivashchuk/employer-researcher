@@ -9,6 +9,8 @@ import pro.ivashchuk.employerresearcher.domain.Vacancy;
 import pro.ivashchuk.employerresearcher.repository.JpaCoverLetterRepository;
 import pro.ivashchuk.employerresearcher.repository.JpaVacancyRepository;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/api/coverLetters")
