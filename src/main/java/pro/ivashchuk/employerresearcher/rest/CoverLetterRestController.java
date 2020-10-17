@@ -42,4 +42,16 @@ public class CoverLetterRestController {
 		jpaCoverLetterRepository.save(coverLetter);
 		return HttpStatus.CREATED;
 	}
+
+	@PutMapping("/coverLetter/{id}/update")
+	public ResponseEntity<CoverLetter> putCoverLetter(@PathVariable("id") Long id,
+	                                           CoverLetter updatedCoverLetter) {
+		Optional<CoverLetter> coverLetterData = jpaCoverLetterRepository.findById(id);
+		if (coverLetterData.isPresent()) {
+			CoverLetter coverLetterToUpdate = coverLetterData.get();
+			return new ResponseEntity<>(jpaCoverLetterRepository.save(coverLetterToUpdate), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
