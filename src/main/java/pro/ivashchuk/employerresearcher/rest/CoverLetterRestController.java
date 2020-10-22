@@ -55,4 +55,10 @@ public class CoverLetterRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@DeleteMapping("employer/{id}/delete")
+	public String deleteCoverLetter(@PathVariable("id") Long id) {
+		jpaCoverLetterRepository.delete(jpaCoverLetterRepository.findById(id).get());
+		return "redirect:localhost:4200/coverLetterList";
+	}
 }
