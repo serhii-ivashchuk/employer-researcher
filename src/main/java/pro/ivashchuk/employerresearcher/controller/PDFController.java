@@ -21,4 +21,10 @@ public class PDFController {
     public ResponseEntity<InputStreamResource> generatePDFResume(@PathVariable("id") Long id) throws IOException, URISyntaxException {
          return pdfService.generateResumePDFById(id);
     }
+
+    @GetMapping("/coverLetters/coverLetter/{id}/generatePDF")
+    public ResponseEntity<InputStreamResource> generatePDFCoverLetter(@PathVariable("id") Long id) throws IOException,
+            URISyntaxException {
+        return pdfService.generateCoverLetterPDFById(id);
+    }
 }
