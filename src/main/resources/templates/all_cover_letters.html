@@ -46,6 +46,11 @@
                        type="submit"
                        value="Change"/>
             </form>
+            <form th:action="@{/coverLetters/coverLetter/{id}/generatePDF(id=${coverLetter.id})}"
+                  th:method="GET">
+                <input class="btn btn-success"
+                       type="submit"
+                       value="Get PDF"/></form>
             <form style="display: inline;" th:action="@{/coverLetters/coverLetter/{id}/delete(id=${coverLetter.id})}"
                   th:method="DELETE">
                 <input class="btn btn-danger"
