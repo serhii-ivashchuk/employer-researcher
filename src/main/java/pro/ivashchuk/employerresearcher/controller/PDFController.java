@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import pro.ivashchuk.employerresearcher.service.PDFService;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 @Controller
 public class PDFController {
@@ -17,14 +16,15 @@ public class PDFController {
     @Autowired
     PDFService pdfService;
 
-    @GetMapping("/resumes/resume/{id}/generatePDF")
-    public ResponseEntity<InputStreamResource> generatePDFResume(@PathVariable("id") Long id) throws IOException, URISyntaxException {
-         return pdfService.generateResumePDFById(id);
+    @GetMapping("/resumes/resume/{id}/generatePDF/template/{templateId}")
+    public ResponseEntity<InputStreamResource> generatePDFResume(@PathVariable("id") Long resumeId,
+                                                                 @PathVariable("templateId") Long templateId) throws IOException {
+        return pdfService.generateResumePDFById(resumeId, templateId);
     }
 
-    @GetMapping("/coverLetters/coverLetter/{id}/generatePDF")
-    public ResponseEntity<InputStreamResource> generatePDFCoverLetter(@PathVariable("id") Long id) throws IOException,
-            URISyntaxException {
-        return pdfService.generateCoverLetterPDFById(id);
+    @GetMapping("/coverLetters/coverLetter/{id}/generatePDF/template/{templateId}")
+    public ResponseEntity<InputStreamResource> generatePDFCoverLetter(@PathVariable("id") Long coverLetterId,
+                                                                      @PathVariable("templateId") Long templateId) throws IOException {
+        return pdfService.generateCoverLetterPDFById(coverLetterId ,templateId);
     }
 }
