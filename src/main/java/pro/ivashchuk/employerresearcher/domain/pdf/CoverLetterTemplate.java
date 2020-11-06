@@ -22,4 +22,8 @@ public class CoverLetterTemplate {
     private Long id;
 
     private String name;
+
+    public CoverLetterTemplate(String name) {
+        this.name = name;
+    }
 }
