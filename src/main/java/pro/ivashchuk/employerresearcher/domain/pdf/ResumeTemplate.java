@@ -21,4 +21,8 @@ public class ResumeTemplate {
     private Long id;
 
     private String name;
+
+    public ResumeTemplate(String name) {
+        this.name = name;
+    }
 }
